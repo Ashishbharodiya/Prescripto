@@ -1,0 +1,14 @@
+import axios from "axios"
+import { GETDOCTORDETAIL, GETDOCTORSDETAL, GETUSERDETAIL } from "../Type/type";
+
+
+export const DoctorDetailAction = (Dtoken)=> {
+    return  (dispatch )=> {
+        axios.get("http://localhost:5000/api/doctor/profile",Dtoken).then((res)=> {
+            dispatch({type:GETDOCTORDETAIL,data1:res.data.data});
+        })
+    }
+}
+
+
+
