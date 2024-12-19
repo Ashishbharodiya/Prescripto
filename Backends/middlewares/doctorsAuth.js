@@ -1,5 +1,4 @@
 const jwt = require("jsonwebtoken");
-const User = require('../model/userModel');
 const Doctor = require("../model/doctorModel");
 
 function authenticateUser(roles = []) {

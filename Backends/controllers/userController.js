@@ -1,5 +1,5 @@
 const User = require("../model/userModel");
-const bcrypt = require("bcrypt");
+const bcrypt = require('bcryptjs');
 const fs = require('fs');
 const htmlTemplate = fs.readFileSync('views/index.html','utf-8');
 const nodemailer = require('nodemailer');
