@@ -10,27 +10,51 @@ function ARegistrationForm() {
   const Atoken = { headers: { Authorization: `Bearer ${cookies?.Atoken}` } };
 
   const dispatch = useDispatch();
-  const [obj, setObj] = useState({});
+  const [obj, setObj] = useState({
+    name: '',
+    email: '',
+    password: ''
+  });
 
   const SignupData = (e) => {
-    obj[e.target.name] = e.target.value;
+    setObj({
+      ...obj,
+      [e.target.name]: e.target.value
+    });
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
+
     try {
-      const data = await dispatch(GetloginAction(obj, Atoken)); 
-      Swal.fire('Success', 'Registration successful!', 'success');
+      const data = await dispatch(GetloginAction(obj, Atoken));
+      
+      Swal.fire({
+        title: 'Success!',
+        text: 'Registration successful!',
+        icon: 'success',
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#4CAF50',  
+      });
+
+      setObj({ name: '', email: '', password: '' });
+
     } catch (error) {
-      Swal.fire('Error', 'Something went wrong!', 'error');
+      Swal.fire({
+        title: 'Error!',
+        text: 'Something went wrong!',
+        icon: 'error',
+        confirmButtonText: 'Try Again',
+        confirmButtonColor: '#F44336',  
+      });
     }
   };
 
   return (
-    <div className="min-h-screen  w-[1200px] bg-gray-900 flex items-center justify-center">
-      <div className="max-w-7xl w-full p-6 shadow-lg rounded-lg bg-gray-800">
+    <div className="min-h-screen w-full bg-gray-900 flex items-center justify-center">
+      <div className="max-w-lg w-full p-6 shadow-lg rounded-lg bg-gray-800">
         <h2 className="text-2xl font-semibold text-center mb-6 text-white">
-          Admin Your Account
+          Admin Account Registration
         </h2>
         <form onSubmit={handleSubmit} autoComplete="off">
           <div className="mb-4">
