@@ -17,7 +17,7 @@ function ALoginForm() {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:5000/api/admin/login', Loginobj, {
+            const response = await axios.post('https://prescripto-62tm.onrender.com/api/admin/login', Loginobj, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
