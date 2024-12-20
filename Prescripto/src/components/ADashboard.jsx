@@ -54,7 +54,14 @@ function ADashboard() {
       showCancelButton: true,
       confirmButtonText: 'Yes, cancel it!',
       cancelButtonText: 'No, keep it',
-      reverseButtons: true
+      reverseButtons: true,
+      customClass: {
+        popup: 'bg-gray-800 text-white border-2 border-gray-700 rounded-lg shadow-lg',
+        title: 'text-xl font-semibold',
+        content: 'text-lg',
+        confirmButton: 'bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-lg focus:ring-2 focus:ring-blue-500',
+        cancelButton: 'bg-gray-600 text-white hover:bg-gray-700 px-4 py-2 rounded-lg focus:ring-2 focus:ring-gray-500',
+      },
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
