@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 function Doctors() {
-  const [cookies] = useCookies(['token']);
+  const [cookies, setCookie, removeCookie] = useCookies(['token']);
   const [filterDoc, setFilterDoc] = useState([]); 
   const [showFilter, setShowFilter] = useState(false);
   const [specialization, setSpecialization] = useState('');
@@ -15,7 +15,16 @@ function Doctors() {
 
   const getAllDoctors = async () => {
     if (!cookies?.token) {
-      Swal.fire('Unauthorized', 'Please login to view doctors.', 'error');
+      Swal.fire({
+        title: 'Unauthorized',
+        text: 'Please login to view doctors.',
+        icon: 'error',
+        customClass: {
+          popup: 'bg-gray-800 text-white border border-gray-600 rounded-lg',
+          title: 'text-xl font-semibold text-red-600',
+          content: 'text-sm text-gray-300',
+        },
+      });
       return;
     }
 
@@ -25,7 +34,12 @@ function Doctors() {
         text: 'Please wait while we fetch the doctors.',
         didOpen: () => {
           Swal.showLoading();
-        }
+        },
+        customClass: {
+          popup: 'bg-gray-800 text-white border border-gray-600 rounded-lg',
+          title: 'text-xl font-semibold text-blue-400',
+          content: 'text-sm text-gray-300',
+        },
       });
 
       const response = await axios.get('https://prescripto-62tm.onrender.com/api/user/all-doctors', token);
@@ -34,11 +48,29 @@ function Doctors() {
         setFilterDoc(response.data.doctors);
         Swal.close();
       } else {
-        Swal.fire('Error', 'Failed to fetch doctors.', 'error');
+        Swal.fire({
+          title: 'Error',
+          text: 'Failed to fetch doctors.',
+          icon: 'error',
+          customClass: {
+            popup: 'bg-gray-800 text-white border border-gray-600 rounded-lg',
+            title: 'text-xl font-semibold text-red-600',
+            content: 'text-sm text-gray-300',
+          },
+        });
       }
     } catch (error) {
-      Swal.close(); 
-      Swal.fire('Error', 'There was a problem fetching doctors. Please try again.', 'error');
+      Swal.close();
+      Swal.fire({
+        title: 'Error',
+        text: 'There was a problem fetching doctors. Please try again.',
+        icon: 'error',
+        customClass: {
+          popup: 'bg-gray-800 text-white border border-gray-600 rounded-lg',
+          title: 'text-xl font-semibold text-red-600',
+          content: 'text-sm text-gray-300',
+        },
+      });
     }
   };
 
@@ -59,10 +91,26 @@ function Doctors() {
       showCancelButton: true,
       confirmButtonText: 'Yes, Book Appointment',
       cancelButtonText: 'No, Cancel',
+      customClass: {
+        popup: 'bg-gray-800 text-white border border-gray-600 rounded-lg',
+        title: 'text-xl font-semibold text-yellow-500',
+        content: 'text-sm text-gray-300',
+        confirmButton: 'bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 focus:outline-none',
+        cancelButton: 'bg-gray-600 text-white py-2 px-4 rounded hover:bg-gray-700 focus:outline-none',
+      },
     }).then((result) => {
       if (result.isConfirmed) {
         navigate(`/appointment/${doctorId}`);
-        Swal.fire('Appointment Booked!', 'You will be redirected to the booking page.', 'success');
+        Swal.fire({
+          title: 'Appointment Booked!',
+          text: 'You will be redirected to the booking page.',
+          icon: 'success',
+          customClass: {
+            popup: 'bg-gray-800 text-white border border-gray-600 rounded-lg',
+            title: 'text-xl font-semibold text-green-400',
+            content: 'text-sm text-gray-300',
+          },
+        });
       }
     });
   };
