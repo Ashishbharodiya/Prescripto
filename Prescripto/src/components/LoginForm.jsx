@@ -28,6 +28,9 @@ function LoginForm() {
         title: 'Login Successful!',
         text: 'Welcome back!',
         icon: 'success',
+        confirmButtonColor: "#1D4ED8",
+        background: "#1E293B",
+        color: "#FFFFFF",
         confirmButtonText: 'Okay',
       });
      
@@ -40,6 +43,9 @@ function LoginForm() {
         title: 'Login Failed!',
         text: 'Invalid credentials, please try again.',
         icon: 'error',
+        confirmButtonColor: "#DC2626",
+        background: "#1E293B",
+        color: "#FFFFFF",
         confirmButtonText: 'Retry',
       });
     }
