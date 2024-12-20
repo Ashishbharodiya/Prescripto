@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 
 function Usidebar() {
 
-    const [cookies, removeCookie] = useCookies(['token']);
+    const [cookies, setCookie, removeCookie] = useCookies(['token']);
     const token = { headers: { Authorization: `Bearer ${cookies?.token}` } };
 
     const navigate = useNavigate();
