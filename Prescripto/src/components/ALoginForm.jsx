@@ -39,7 +39,13 @@ function ALoginForm() {
                     title: 'Success!',
                     text: 'Login successful. You are now logged in.',
                     icon: 'success',
-                    confirmButtonText: 'OK'
+                    confirmButtonText: 'OK',
+                      customClass: {
+                        popup: 'bg-gray-800 text-white',
+                        title: 'text-xl font-semibold text-white',
+                        content: 'text-white',
+                        confirmButton: 'bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500',
+                    },
                 }).then(() => {
                     navigate("/admin/dashboard"); 
                 });
@@ -49,7 +55,13 @@ function ALoginForm() {
                     title: 'Login Failed!',
                     text: 'Invalid email or password. Please try again.',
                     icon: 'error',
-                    confirmButtonText: 'Try Again'
+                    confirmButtonText: 'Try Again',
+                      customClass: {
+                        popup: 'bg-gray-800 text-white',
+                        title: 'text-xl font-semibold text-white',
+                        content: 'text-white',
+                        confirmButton: 'bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500',
+                    },
                 });
             }
 
@@ -60,7 +72,13 @@ function ALoginForm() {
                 title: 'Error!',
                 text: 'An error occurred during login. Please try again later.',
                 icon: 'error',
-                confirmButtonText: 'OK'
+                confirmButtonText: 'OK',
+                  customClass: {
+                    popup: 'bg-gray-800 text-white',
+                    title: 'text-xl font-semibold text-white',
+                    content: 'text-white',
+                    confirmButton: 'bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500',
+                },
             });
         }
     }
