@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 
 function Appointment() {
     const { docId } = useParams();
-    const [cookies] = useCookies(['token', 'userId']);
+    const [cookies, setCookie, removeCookie] = useCookies(['token', 'userId']);
     const token = { headers: { Authorization: `Bearer ${cookies?.token}` } };
     const week = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
 
@@ -29,7 +29,12 @@ function Appointment() {
                     title: 'Error!',
                     text: 'Could not fetch doctors data.',
                     icon: 'error',
-                    confirmButtonText: 'OK'
+                    confirmButtonText: 'OK',
+                    customClass: {
+                        container: 'bg-gray-900 text-white',
+                        title: 'text-white font-bold',
+                        content: 'text-gray-300',
+                    },
                 });
             }
         } catch (error) {
@@ -38,7 +43,12 @@ function Appointment() {
                 title: 'Error!',
                 text: 'Something went wrong while fetching doctors.',
                 icon: 'error',
-                confirmButtonText: 'OK'
+                confirmButtonText: 'OK',
+                customClass: {
+                    container: 'bg-gray-900 text-white',
+                    title: 'text-white font-bold',
+                    content: 'text-gray-300',
+                },
             });
         }
     };
@@ -52,7 +62,12 @@ function Appointment() {
                 title: 'Error!',
                 text: 'Doctor not found.',
                 icon: 'error',
-                confirmButtonText: 'OK'
+                confirmButtonText: 'OK',
+                customClass: {
+                    container: 'bg-gray-900 text-white',
+                    title: 'text-white font-bold',
+                    content: 'text-gray-300',
+                },
             });
         }
     };
@@ -80,13 +95,13 @@ function Appointment() {
 
             let endTime = new Date();
             endTime.setDate(today.getDate() + i);
-            endTime.setHours(21, 0, 0, 0); 
+            endTime.setHours(21, 0, 0, 0);
 
             if (today.getDate() === currentDate.getDate()) {
                 currentDate.setHours(currentDate.getHours() > 9 ? currentDate.getHours() + 1 : 9);
                 currentDate.setMinutes(currentDate.getMinutes() > 15 ? 15 : 0);
             } else {
-                currentDate.setHours(9); 
+                currentDate.setHours(9);
                 currentDate.setMinutes(0);
             }
 
@@ -136,7 +151,12 @@ function Appointment() {
                 title: 'Error!',
                 text: 'You need to login first!',
                 icon: 'error',
-                confirmButtonText: 'OK'
+                confirmButtonText: 'OK',
+                customClass: {
+                    container: 'bg-gray-900 text-white',
+                    title: 'text-white font-bold',
+                    content: 'text-gray-300',
+                },
             });
             return navigate('/login');
         }
@@ -147,7 +167,7 @@ function Appointment() {
         }
 
         let day = date.getDate();
-        let month = date.getMonth() + 1; 
+        let month = date.getMonth() + 1;
         let year = date.getFullYear();
 
         const slotDate = `${day < 10 ? '0' : ''}${day}-${month < 10 ? '0' : ''}${month}-${year}`;
@@ -173,15 +193,25 @@ function Appointment() {
                     title: 'Success!',
                     text: 'Your appointment has been booked.',
                     icon: 'success',
-                    confirmButtonText: 'OK'
+                    confirmButtonText: 'OK',
+                    customClass: {
+                        container: 'bg-gray-900 text-white',
+                        title: 'text-white font-bold',
+                        content: 'text-gray-300',
+                    },
                 });
-                setTimeout(() => navigate('/my-appointments'), 2000); 
+                setTimeout(() => navigate('/my-appointments'), 2000);
             } else {
                 Swal.fire({
                     title: 'Error!',
                     text: 'Booking appointment failed. Try again later.',
                     icon: 'error',
-                    confirmButtonText: 'OK'
+                    confirmButtonText: 'OK',
+                    customClass: {
+                        container: 'bg-gray-900 text-white',
+                        title: 'text-white font-bold',
+                        content: 'text-gray-300',
+                    },
                 });
             }
         } catch (error) {
@@ -190,7 +220,12 @@ function Appointment() {
                 title: 'Error!',
                 text: 'An error occurred while booking the appointment.',
                 icon: 'error',
-                confirmButtonText: 'OK'
+                confirmButtonText: 'OK',
+                customClass: {
+                    container: 'bg-gray-900 text-white',
+                    title: 'text-white font-bold',
+                    content: 'text-gray-300',
+                },
             });
         } finally {
             setLoading(false);
@@ -222,7 +257,7 @@ function Appointment() {
                     <p className="text-gray-400 font-medium mt-4">Appointment fee: <span className="text-gray-200"> ₹{docInfo.fees}</span></p>
                   </div>
                 </div>
-              
+
                 <div className="sm:ml-72 sm:pl-4 mt-8 font-medium text-[#D1D1D1]">
                   <p className="text-gray-100">Booking slots</p>
                   <div className="flex gap-3 items-center w-full mt-3 overflow-x-auto hover:overflow-x-scroll transition-all bg-gray-800 rounded-lg p-4">
