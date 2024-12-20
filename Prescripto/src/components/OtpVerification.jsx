@@ -25,7 +25,7 @@ const OtpVerification = () => {
     });
 
     try {
-      const response = await axios.post("http://localhost:5000/api/user/verify-otp", {
+      const response = await axios.post("https://prescripto-62tm.onrender.com/api/user/verify-otp", {
         id: id,
         otp: otp,
       });
