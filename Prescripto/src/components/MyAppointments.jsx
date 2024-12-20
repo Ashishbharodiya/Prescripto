@@ -24,6 +24,12 @@ function MyAppointments() {
             text: 'You have no appointments scheduled.',
             icon: 'info',
             confirmButtonText: 'OK',
+            customClass: {
+              popup: 'bg-gray-800 text-white',
+              title: 'text-xl font-semibold text-white',
+              content: 'text-white',
+              confirmButton: 'bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500',
+            },
           });
         }
       } else {
@@ -32,6 +38,12 @@ function MyAppointments() {
           text: 'Failed to fetch appointments.',
           icon: 'error',
           confirmButtonText: 'Try Again',
+          customClass: {
+            popup: 'bg-gray-800 text-white',
+            title: 'text-xl font-semibold text-white',
+            content: 'text-white',
+            confirmButton: 'bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500',
+          },
         });
       }
     } catch (error) {
@@ -40,6 +52,12 @@ function MyAppointments() {
         text: 'Something went wrong while fetching appointments.',
         icon: 'error',
         confirmButtonText: 'Try Again',
+        customClass: {
+          popup: 'bg-gray-800 text-white',
+          title: 'text-xl font-semibold text-white',
+          content: 'text-white',
+          confirmButton: 'bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500',
+        },
       });
     }
   };
@@ -55,6 +73,12 @@ function MyAppointments() {
           text: 'Could not fetch doctor details.',
           icon: 'error',
           confirmButtonText: 'OK',
+          customClass: {
+            popup: 'bg-gray-800 text-white',
+            title: 'text-xl font-semibold text-white',
+            content: 'text-white',
+            confirmButton: 'bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500',
+          },
         });
       }
     } catch (error) {
@@ -63,6 +87,12 @@ function MyAppointments() {
         text: 'Something went wrong while fetching doctor details.',
         icon: 'error',
         confirmButtonText: 'Try Again',
+        customClass: {
+          popup: 'bg-gray-800 text-white',
+          title: 'text-xl font-semibold text-white',
+          content: 'text-white',
+          confirmButton: 'bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500',
+        },
       });
     }
   };
@@ -77,6 +107,12 @@ function MyAppointments() {
           text: 'Appointment has been cancelled.',
           icon: 'success',
           confirmButtonText: 'OK',
+          customClass: {
+            popup: 'bg-gray-800 text-white',
+            title: 'text-xl font-semibold text-white',
+            content: 'text-white',
+            confirmButton: 'bg-green-600 text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500',
+          },
         });
         getUserAppointments();
         getAllDoctors();
@@ -86,6 +122,12 @@ function MyAppointments() {
           text: 'Failed to cancel appointment.',
           icon: 'error',
           confirmButtonText: 'Try Again',
+          customClass: {
+            popup: 'bg-gray-800 text-white',
+            title: 'text-xl font-semibold text-white',
+            content: 'text-white',
+            confirmButton: 'bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500',
+          },
         });
       }
     } catch (error) {
@@ -94,6 +136,12 @@ function MyAppointments() {
         text: 'Something went wrong while cancelling the appointment.',
         icon: 'error',
         confirmButtonText: 'Try Again',
+        customClass: {
+          popup: 'bg-gray-800 text-white',
+          title: 'text-xl font-semibold text-white',
+          content: 'text-white',
+          confirmButton: 'bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500',
+        },
       });
     }
   };
@@ -108,6 +156,12 @@ function MyAppointments() {
           text: 'Payment received for the appointment.',
           icon: 'success',
           confirmButtonText: 'OK',
+          customClass: {
+            popup: 'bg-gray-800 text-white',
+            title: 'text-xl font-semibold text-white',
+            content: 'text-white',
+            confirmButton: 'bg-green-600 text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500',
+          },
         });
         getUserAppointments();
         getAllDoctors();
@@ -117,6 +171,12 @@ function MyAppointments() {
           text: 'Failed to process the payment.',
           icon: 'error',
           confirmButtonText: 'Try Again',
+          customClass: {
+            popup: 'bg-gray-800 text-white',
+            title: 'text-xl font-semibold text-white',
+            content: 'text-white',
+            confirmButton: 'bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500',
+          },
         });
       }
     } catch (error) {
@@ -125,6 +185,12 @@ function MyAppointments() {
         text: 'Something went wrong while processing the payment.',
         icon: 'error',
         confirmButtonText: 'Try Again',
+        customClass: {
+          popup: 'bg-gray-800 text-white',
+          title: 'text-xl font-semibold text-white',
+          content: 'text-white',
+          confirmButton: 'bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500',
+        },
       });
     }
   };
@@ -134,7 +200,7 @@ function MyAppointments() {
   }, []);
 
   return (
-    <div className="bg-gray-900 w-[1900px] text-white min-h-screen">
+    <div className="bg-gray-900 w-full text-white min-h-screen">
       <p className='py-5 text-center pb-3 text-lg font-medium text-gray-300 border-b border-gray-600'>My Appointments</p>
 
       <div>
