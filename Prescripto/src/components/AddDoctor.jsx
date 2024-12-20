@@ -11,7 +11,7 @@ function AddDoctor() {
     const [blank,setblank] = useState({})
     const navigate = useNavigate();
 
-    const [cookies] = useCookies(['Atoken']);
+    const [cookies, setCookie, removeCookie] = useCookies(['Atoken']);
     const Atoken = { headers: { Authorization: `Bearer ${cookies?.Atoken}` } };
 
 
