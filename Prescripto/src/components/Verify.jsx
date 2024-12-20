@@ -15,7 +15,7 @@ function Verify() {
     const verifyStripe = async () => {
         try {
             const response = await axios.post(
-                'http://localhost:5000/api/user/verifyStripe',
+                'https://prescripto-62tm.onrender.com/api/user/verifyStripe',
                 { success, appointmentId },
                 token
             );
