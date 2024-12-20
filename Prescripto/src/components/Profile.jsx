@@ -5,7 +5,7 @@ import { UserDetailAction } from '../Redux/Action/UseAction';
 import Swal from 'sweetalert2';
 
 function Profile() {
-  const [cookies] = useCookies(['token']);
+  const [cookies, setCookie, removeCookie] = useCookies(['token']);
   const token = { headers: { Authorization: `Bearer ${cookies?.token}` } };
 
   const dispatch = useDispatch();
@@ -20,6 +20,12 @@ function Profile() {
         text: 'No token found. Please log in to view your profile.',
         icon: 'error',
         confirmButtonText: 'OK',
+        customClass: {
+          popup: 'bg-gray-800 text-white',
+          title: 'text-xl font-semibold text-white',
+          content: 'text-white',
+          confirmButton: 'bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500',
+        },
       });
     }
   }, [cookies?.token, dispatch]);
@@ -31,6 +37,12 @@ function Profile() {
         text: 'Your profile data has been successfully fetched.',
         icon: 'success',
         confirmButtonText: 'OK',
+        customClass: {
+          popup: 'bg-gray-800 text-white',
+          title: 'text-xl font-semibold text-white',
+          content: 'text-white',
+          confirmButton: 'bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500',
+        },
       });
     }
     if (state.userDetail?.GetUserDetail?.length === 0) {
@@ -39,6 +51,12 @@ function Profile() {
         text: 'Failed to load your profile. Please try again.',
         icon: 'error',
         confirmButtonText: 'Try Again',
+        customClass: {
+          popup: 'bg-gray-800 text-white',
+          title: 'text-xl font-semibold text-white',
+          content: 'text-white',
+          confirmButton: 'bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500',
+        },
       });
     }
   }, [state.userDetail]);
@@ -47,7 +65,7 @@ function Profile() {
     <div className="bg-gray-900 w-[1200px] text-white min-h-screen p-6">
       <div className="max-w-3xl mx-auto bg-gray-800 rounded-lg shadow-lg p-8">
         <h5 className="text-2xl font-bold text-center mb-6 text-indigo-500">Profile</h5>
-        
+
         {state.userDetail?.GetUserDetail?.map((userData, i) => {
           return (
             i === 0 && (
@@ -59,7 +77,7 @@ function Profile() {
                     className="object-cover rounded-full w-[270px] h-[280px] transition-transform duration-300 hover:scale-110"
                   />
                 </div>
-                
+
                 <div className="text-center">
                   <p className="text-2xl font-semibold">{userData.userName}</p>
                   <p className="text-lg text-gray-400">{userData.firstName} {userData.lastName}</p>
