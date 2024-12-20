@@ -32,19 +32,53 @@ function AllAppointments() {
             showCancelButton: true,
             confirmButtonText: 'Yes, cancel it!',
             cancelButtonText: 'No, keep it',
-            reverseButtons: true
+            reverseButtons: true,
+            customClass: {
+                container: 'bg-gray-900 text-white',
+                title: 'text-white font-semibold',
+                content: 'text-gray-300',
+                confirmButton: 'bg-red-600 hover:bg-red-700 text-white',
+                cancelButton: 'bg-gray-600 hover:bg-gray-700 text-white'
+            }
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
                     const response = await axios.post('https://prescripto-62tm.onrender.com/api/admin/cancel-appointment', { appointmentId }, Atoken);
                     if (response.data.success) {
                         getAllAppointments();
-                        Swal.fire('Cancelled!', 'The appointment has been cancelled.', 'success');
+                        Swal.fire({
+                            title: 'Cancelled!',
+                            text: 'The appointment has been cancelled.',
+                            icon: 'success',
+                            customClass: {
+                                container: 'bg-gray-900 text-white',
+                                title: 'text-white font-semibold',
+                                content: 'text-gray-300'
+                            }
+                        });
                     } else {
-                        Swal.fire('Error!', 'Something went wrong, please try again.', 'error');
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'Something went wrong, please try again.',
+                            icon: 'error',
+                            customClass: {
+                                container: 'bg-gray-900 text-white',
+                                title: 'text-white font-semibold',
+                                content: 'text-gray-300'
+                            }
+                        });
                     }
                 } catch (error) {
-                    Swal.fire('Error!', 'There was an issue canceling the appointment.', 'error');
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'There was an issue canceling the appointment.',
+                        icon: 'error',
+                        customClass: {
+                            container: 'bg-gray-900 text-white',
+                            title: 'text-white font-semibold',
+                            content: 'text-gray-300'
+                        }
+                    });
                     console.log('Error canceling appointment: ', error);
                 }
             }
