@@ -5,7 +5,6 @@ import { FaTimes, FaCheck } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 
 function DoctorAppointments() {
-
   const [cookies] = useCookies(['Dtoken']);
   const Dtoken = { headers: { Authorization: `Bearer ${cookies?.Dtoken}` } };
 
@@ -21,6 +20,11 @@ function DoctorAppointments() {
           icon: 'error',
           title: 'Failed to fetch appointments',
           text: 'Could not load appointments. Please try again later.',
+          customClass: {
+            popup: 'bg-gray-800 text-white border border-gray-600 rounded-lg',
+            title: 'text-xl font-semibold text-red-600',
+            content: 'text-sm text-gray-300',
+          },
         });
       }
     } catch (error) {
@@ -28,6 +32,11 @@ function DoctorAppointments() {
         icon: 'error',
         title: 'Error',
         text: 'An error occurred while fetching appointments.',
+        customClass: {
+          popup: 'bg-gray-800 text-white border border-gray-600 rounded-lg',
+          title: 'text-xl font-semibold text-red-600',
+          content: 'text-sm text-gray-300',
+        },
       });
     }
   };
@@ -40,6 +49,13 @@ function DoctorAppointments() {
       showCancelButton: true,
       confirmButtonText: 'Yes, complete it!',
       cancelButtonText: 'No, keep it',
+      customClass: {
+        popup: 'bg-gray-800 text-white border border-gray-600 rounded-lg',
+        title: 'text-xl font-semibold text-yellow-500',
+        content: 'text-sm text-gray-300',
+        confirmButton: 'bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 focus:outline-none',
+        cancelButton: 'bg-gray-600 text-white py-2 px-4 rounded hover:bg-gray-700 focus:outline-none',
+      },
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
@@ -53,13 +69,25 @@ function DoctorAppointments() {
             Swal.fire(
               'Completed!',
               'The appointment has been completed successfully.',
-              'success'
+              'success',
+              {
+                customClass: {
+                  popup: 'bg-gray-800 text-white border border-gray-600 rounded-lg',
+                  title: 'text-xl font-semibold text-green-400',
+                  content: 'text-sm text-gray-300',
+                },
+              }
             );
           } else {
             Swal.fire({
               icon: 'error',
               title: 'Error',
               text: 'Failed to mark appointment as completed. Please try again.',
+              customClass: {
+                popup: 'bg-gray-800 text-white border border-gray-600 rounded-lg',
+                title: 'text-xl font-semibold text-red-600',
+                content: 'text-sm text-gray-300',
+              },
             });
           }
         } catch (error) {
@@ -67,6 +95,11 @@ function DoctorAppointments() {
             icon: 'error',
             title: 'Error',
             text: 'An error occurred while completing the appointment.',
+            customClass: {
+              popup: 'bg-gray-800 text-white border border-gray-600 rounded-lg',
+              title: 'text-xl font-semibold text-red-600',
+              content: 'text-sm text-gray-300',
+            },
           });
         }
       }
@@ -81,6 +114,13 @@ function DoctorAppointments() {
       showCancelButton: true,
       confirmButtonText: 'Yes, cancel it!',
       cancelButtonText: 'No, keep it',
+      customClass: {
+        popup: 'bg-gray-800 text-white border border-gray-600 rounded-lg',
+        title: 'text-xl font-semibold text-red-500',
+        content: 'text-sm text-gray-300',
+        confirmButton: 'bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700 focus:outline-none',
+        cancelButton: 'bg-gray-600 text-white py-2 px-4 rounded hover:bg-gray-700 focus:outline-none',
+      },
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
@@ -94,13 +134,25 @@ function DoctorAppointments() {
             Swal.fire(
               'Cancelled!',
               'The appointment has been cancelled successfully.',
-              'success'
+              'success',
+              {
+                customClass: {
+                  popup: 'bg-gray-800 text-white border border-gray-600 rounded-lg',
+                  title: 'text-xl font-semibold text-green-400',
+                  content: 'text-sm text-gray-300',
+                },
+              }
             );
           } else {
             Swal.fire({
               icon: 'error',
               title: 'Error',
               text: 'Failed to cancel appointment. Please try again.',
+              customClass: {
+                popup: 'bg-gray-800 text-white border border-gray-600 rounded-lg',
+                title: 'text-xl font-semibold text-red-600',
+                content: 'text-sm text-gray-300',
+              },
             });
           }
         } catch (error) {
@@ -108,6 +160,11 @@ function DoctorAppointments() {
             icon: 'error',
             title: 'Error',
             text: 'An error occurred while cancelling the appointment.',
+            customClass: {
+              popup: 'bg-gray-800 text-white border border-gray-600 rounded-lg',
+              title: 'text-xl font-semibold text-red-600',
+              content: 'text-sm text-gray-300',
+            },
           });
         }
       }
@@ -115,7 +172,7 @@ function DoctorAppointments() {
   };
 
   useEffect(() => {
-    if (cookies?.Dtoken) { 
+    if (cookies?.Dtoken) {
       getAppointments();
     }
   }, [cookies?.Dtoken]);
