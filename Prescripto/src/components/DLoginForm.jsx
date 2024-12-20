@@ -40,7 +40,12 @@ function DLoginForm() {
                     title: 'Success!',
                     text: 'Login successful. You are now logged in.',
                     icon: 'success',
-                    confirmButtonText: 'OK'
+                    confirmButtonText: 'OK' ,
+                       customClass: {
+                        container: 'bg-gray-900 dark:bg-gray-800 rounded-lg',
+                        title: 'text-white font-bold',
+                        content: 'text-gray-300',
+                    },
                 }).then(() => {
                     navigate("/doctor-dashboard"); 
                 });
@@ -50,7 +55,12 @@ function DLoginForm() {
                     title: 'Login Failed!',
                     text: 'Invalid email or password. Please try again.',
                     icon: 'error',
-                    confirmButtonText: 'Try Again'
+                    confirmButtonText: 'Try Again' ,
+                      customClass: {
+                        container: 'bg-gray-900 dark:bg-gray-800 rounded-lg',
+                        title: 'text-white font-bold',
+                        content: 'text-gray-300',
+                    },
                 });
             }
 
@@ -61,7 +71,12 @@ function DLoginForm() {
                 title: 'Error!',
                 text: 'An error occurred during login. Please try again later.',
                 icon: 'error',
-                confirmButtonText: 'OK'
+                confirmButtonText: 'OK' 
+                , customClass: {
+                    container: 'bg-gray-900 dark:bg-gray-800 rounded-lg',
+                    title: 'text-white font-bold',
+                    content: 'text-gray-300',
+                },
             });
         }
     }
