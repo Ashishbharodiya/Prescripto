@@ -6,7 +6,7 @@ import icons from '../images/close.png';
 import Swal from 'sweetalert2';
 
 function AllAppointments() {
-    const [cookies] = useCookies(['Atoken']);
+    const [cookies, setCookie, removeCookie] = useCookies(['Atoken']);
     const Atoken = { headers: { Authorization: `Bearer ${cookies?.Atoken}` } };
 
     const [appointments, setAppointments] = useState([]);
