@@ -1,21 +1,19 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import { useDispatch, useSelector } from 'react-redux';
 import { DoctorDetailAction } from '../Redux/Action/UseAction';
 import Swal from 'sweetalert2';
 
 function Dprofile() {
-    const [cookies] = useCookies(['Dtoken']);
+    const [cookies, setCookie, removeCookie] = useCookies(['Dtoken']);
     const Dtoken = { headers: { Authorization: `Bearer ${cookies?.Dtoken}` } };
 
-    console.log(Dtoken);
-    
     const dispatch = useDispatch();
     const state = useSelector((state) => state);
 
     useEffect(() => {
         if (cookies?.Dtoken) {
-          dispatch(DoctorDetailAction(Dtoken)); 
+            dispatch(DoctorDetailAction(Dtoken)); 
         }
     }, [cookies?.Dtoken, dispatch]);
 
@@ -25,39 +23,41 @@ function Dprofile() {
                 icon: 'error',
                 title: 'No Profile Data',
                 text: 'Failed to load doctor profile data. Please try again later.',
+                confirmButtonColor: '#EF4444',
             });
         } else if (state.userDetail?.GetUserDetail) {
             Swal.fire({
                 icon: 'success',
                 title: 'Profile Loaded',
                 text: 'Your profile details have been successfully loaded.',
+                confirmButtonColor: '#10B981',
             });
         }
     }, [state.userDetail]);
 
     return (
-        <div className="bg-gray-900 text-white min-h-screen p-7 overflow-auto ">
-            <div className=" max-w-full bg-gray-800 rounded-lg shadow-lg p-8">
+        <div className="bg-gray-900 text-white min-h-screen p-7 overflow-auto">
+            <div className="max-w-full bg-gray-800 rounded-lg shadow-lg p-8">
                 <h5 className="text-2xl font-bold text-center mb-6 text-indigo-500">Profile</h5>
-                
+
                 {state.userDetail?.GetUserDetail?.map((userData, i) => {
                     return (
                         i === 0 && (
                             <div key={userData.id} className="space-y-6 overflow-auto">
                                 <div className="flex justify-center">
                                     <img
-                                        src={`https://prescripto-62tm.onrender.com${state.userDetail?.GetUserDetail?.[0]?.image}`}
+                                        src={`https://prescripto-62tm.onrender.com${userData.image}`}
                                         alt="User Profile"
                                         className="object-cover rounded-full w-[270px] h-[280px] transition-transform duration-300 hover:scale-110"
                                     />
                                 </div>
-                                
-                                <div className="text-center">
+
+                                <div className="text-center mt-4">
                                     <p className="text-2xl font-semibold">{userData.userName}</p>
                                     <p className="text-lg text-gray-400">{userData.firstName} {userData.lastName}</p>
                                 </div>
 
-                                <hr className="border-gray-600" />
+                                <hr className="border-gray-600 my-6" />
 
                                 <div>
                                     <p className="text-xl font-semibold mb-3 text-indigo-400">Contact Information</p>
@@ -81,16 +81,14 @@ function Dprofile() {
                                             <p className="text-gray-400">Address:</p>
                                             <p>{userData.address}</p>
                                         </div>
-
                                     </div>
                                 </div>
 
-                                <hr className="border-gray-600" />
+                                <hr className="border-gray-600 my-6" />
 
                                 <div>
                                     <p className="text-xl font-semibold mb-3 text-indigo-400">Basic Information</p>
                                     <div className="space-y-3">
-
                                         <div className="flex space-x-3 hover:bg-gray-700 p-2 rounded-md transition-all duration-200">
                                             <p className="text-gray-400">Specialization:</p>
                                             <p>{userData.specialization}</p>
@@ -115,11 +113,10 @@ function Dprofile() {
                                             <p className="text-gray-400">About:</p>
                                             <p>{userData.about}</p>
                                         </div>
-
                                     </div>
                                 </div>
 
-                                <hr className="border-gray-600" />
+                                <hr className="border-gray-600 my-6" />
 
                                 <div>
                                     <p className="text-xl font-semibold mb-3 text-indigo-400">Availability</p>
@@ -138,7 +135,6 @@ function Dprofile() {
                                             <p className="text-gray-400">Availability Time:</p>
                                             <p>{userData.availability?.time}</p>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -147,7 +143,7 @@ function Dprofile() {
                 })}
             </div>
         </div>
-    )
+    );
 }
 
 export default Dprofile;
