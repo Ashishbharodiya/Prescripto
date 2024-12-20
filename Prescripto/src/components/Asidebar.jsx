@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { useCookies } from 'react-cookie';
 import { FaCalendarAlt, FaHome, FaSignOutAlt, FaUserMd, FaUsers } from 'react-icons/fa';
 import { NavLink, useNavigate } from 'react-router-dom';
@@ -6,10 +6,8 @@ import { MdAdminPanelSettings } from "react-icons/md";
 import Swal from 'sweetalert2';
 
 function Asidebar() {
-
     const [cookies, setCookie, removeCookie] = useCookies(['Atoken']);
     const Atoken = { headers: { Authorization: `Bearer ${cookies?.Atoken}` } };
-    
     const navigate = useNavigate();
 
     const logout = () => {
@@ -20,30 +18,45 @@ function Asidebar() {
             showCancelButton: true,
             confirmButtonText: 'Yes, log me out!',
             cancelButtonText: 'Cancel',
-            reverseButtons: true
+            reverseButtons: true,
+            customClass: {
+                container: 'bg-gray-900 dark:bg-gray-800',
+                title: 'text-white font-bold',
+                content: 'text-gray-300',
+            },
         }).then((result) => {
             if (result.isConfirmed) {
                 removeCookie('Atoken');
-                navigate('/admin/login'); 
-                Swal.fire('Logged out!', 'You have been logged out successfully.', 'success');
+                navigate('/admin/login');
+                Swal.fire({
+                    title: 'Logged out!',
+                    text: 'You have been logged out successfully.',
+                    icon: 'success',
+                    confirmButtonText: 'OK',
+                    customClass: {
+                        container: 'bg-gray-900 dark:bg-gray-800',
+                        title: 'text-white font-bold',
+                        content: 'text-gray-300',
+                    },
+                });
             }
         });
     };
 
     return (
-        <div className="min-h-screen border-r">
+        <div className="min-h-screen border-r bg-gray-900 text-white">
             {Atoken && (
-                <ul className="text-[#515151] mt-5 dark:bg-gray-800">
+                <ul className="mt-5">
                     <NavLink
                         to="/admin/dashboard"
                         className={({ isActive }) =>
-                            `flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-72 cursor-pointer dark:bg-gray-800  ${
+                            `flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-72 cursor-pointer dark:bg-gray-800 ${
                                 isActive ? 'bg-gray-800 border-r-4 border-primary' : ''
                             }`
                         }
                     >
-                        <FaHome className="min-w-4 text-white" />
-                        <p className="hidden md:block text-white">Dashboard</p>
+                        <FaHome className="min-w-4" />
+                        <p className="hidden md:block">Dashboard</p>
                     </NavLink>
 
                     <NavLink
@@ -54,8 +67,8 @@ function Asidebar() {
                             }`
                         }
                     >
-                        <FaCalendarAlt className="min-w-4 text-white" />
-                        <p className="hidden md:block text-white">Appointments</p>
+                        <FaCalendarAlt className="min-w-4" />
+                        <p className="hidden md:block">Appointments</p>
                     </NavLink>
 
                     <NavLink
@@ -66,8 +79,8 @@ function Asidebar() {
                             }`
                         }
                     >
-                        <FaUserMd className="min-w-4 text-white" />
-                        <p className="hidden md:block text-white">Add Doctor</p>
+                        <FaUserMd className="min-w-4" />
+                        <p className="hidden md:block">Add Doctor</p>
                     </NavLink>
 
                     <NavLink
@@ -78,8 +91,8 @@ function Asidebar() {
                             }`
                         }
                     >
-                        <MdAdminPanelSettings className="min-w-4 text-white" />
-                        <p className="hidden md:block text-white">Add Admin</p>
+                        <MdAdminPanelSettings className="min-w-4" />
+                        <p className="hidden md:block">Add Admin</p>
                     </NavLink>
 
                     <NavLink
@@ -90,16 +103,16 @@ function Asidebar() {
                             }`
                         }
                     >
-                        <FaUsers className="min-w-4 text-white" />
-                        <p className="hidden md:block text-white">Doctors List</p>
+                        <FaUsers className="min-w-4" />
+                        <p className="hidden md:block">Doctors List</p>
                     </NavLink>
 
                     <button
                         className="flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-72 cursor-pointer"
-                        onClick={() => logout()}
+                        onClick={logout}
                     >
-                        <FaSignOutAlt className="min-w-4 text-white" />
-                        <p className="hidden md:block text-white">Logout</p>
+                        <FaSignOutAlt className="min-w-4" />
+                        <p className="hidden md:block">Logout</p>
                     </button>
                 </ul>
             )}
