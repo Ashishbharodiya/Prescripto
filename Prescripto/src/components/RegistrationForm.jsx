@@ -48,9 +48,9 @@ function RegistrationForm() {
         text: 'You have been registered successfully.',
         icon: 'success',
         confirmButtonText: 'OK',
-        background: '#1f2937', // Dark background for Swal modal
-        color: '#fff', // White text color
-        confirmButtonColor: '#2563eb', // Button color
+        background: '#1f2937',
+        color: '#fff', 
+        confirmButtonColor: '#2563eb', 
       });
 
       navigate(`/Login`);
@@ -62,9 +62,9 @@ function RegistrationForm() {
         text: 'There was an issue with your registration. Please try again later.',
         icon: 'error',
         confirmButtonText: 'Try Again',
-        background: '#1f2937', // Dark background for Swal modal
-        color: '#fff', // White text color
-        confirmButtonColor: '#dc2626', // Button color for errors
+        background: '#1f2937',
+        color: '#fff', 
+        confirmButtonColor: '#dc2626', 
       });
     }
   };
