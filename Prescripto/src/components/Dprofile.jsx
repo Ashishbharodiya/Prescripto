@@ -5,7 +5,7 @@ import { DoctorDetailAction } from '../Redux/Action/UseAction';
 import Swal from 'sweetalert2';
 
 function Dprofile() {
-    const [cookies] = useCookies(['Dtoken']);
+    const [cookies, setCookie, removeCookie] = useCookies(['Dtoken']);
     const Dtoken = { headers: { Authorization: `Bearer ${cookies?.Dtoken}` } };
 
     console.log(Dtoken);

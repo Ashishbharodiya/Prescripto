@@ -6,13 +6,13 @@ import Swal from 'sweetalert2';
 const DoctorsList = () => {
     const [doctors, setDoctors] = useState([]);
     const [loading, setLoading] = useState(true);  
-    const [cookies] = useCookies(['Atoken']);
+    const [cookies, setCookie, removeCookie] = useCookies(['Atoken']);
     const Atoken = cookies?.Atoken;
 
     const getAllDoctors = async () => {
         setLoading(true);
         try {
-            const { data } = await axios.get('http://localhost:5000/api/admin/all-doctors', {
+            const { data } = await axios.get('https://prescripto-62tm.onrender.com/api/admin/all-doctors', {
                 headers: { Authorization: `Bearer ${Atoken}` },
             });
 
@@ -40,7 +40,7 @@ const DoctorsList = () => {
     const changeAvailability = async (docId) => {
         try {
             const { data } = await axios.post(
-                'http://localhost:5000/api/doctor/change-availability',
+                'https://prescripto-62tm.onrender.com/api/doctor/change-availability',
                 { docId },
                 { headers: { Authorization: `Bearer ${Atoken}` } }
             );
@@ -89,7 +89,7 @@ const DoctorsList = () => {
        <div key={item._id} className='border border-[#444444] rounded-xl max-w-[220px] w-full overflow-hidden cursor-pointer group'>
         <img
           className='w-full h-48 object-cover bg-[#2E2E2E] group-hover:bg-[#1A73E8] transition-all duration-500'
-          src={item.image ? `http://localhost:5000${item.image}` : '/path/to/fallback-image.jpg'}
+          src={item.image ? `https://prescripto-62tm.onrender.com${item.image}` : '/path/to/fallback-image.jpg'}
           alt={item.name}
         />
         <div className='p-4'>

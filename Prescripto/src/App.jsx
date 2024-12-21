@@ -52,7 +52,7 @@ function App() {
             <div  className='flex w-full h-full '>
             <Usidebar />
             <Routes>
-            <Route path="/" element={<Navigate to="/profile" />} />
+            <Route path="/" element={<Navigate to="/user/dashboard" />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/doctors" element={<Doctors />} />
             <Route path="/user/dashboard" element={<Udashboard />} />

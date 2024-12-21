@@ -8,7 +8,7 @@ import { FaRegHospital } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 
 function ADashboard() {
-  const [cookies] = useCookies(['Atoken']);
+  const [cookies, setCookie, removeCookie] = useCookies(['Atoken']);
   const Atoken = { headers: { Authorization: `Bearer ${cookies?.Atoken}` } };
 
   const [appointments, setAppointments] = useState([]);
@@ -22,7 +22,7 @@ function ADashboard() {
 
   const getDashData = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/admin/dashboard', Atoken);
+      const response = await axios.get('https://prescripto-62tm.onrender.com/api/admin/dashboard', Atoken);
       if (response.data.success) {
         setDashData(response.data.dashData);
       } else {
@@ -35,7 +35,7 @@ function ADashboard() {
 
   const getAllAppointments = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/admin/appointments', Atoken);
+      const response = await axios.get('https://prescripto-62tm.onrender.com/api/admin/appointments', Atoken);
       if (response.data.success) {
         setAppointments(response.data.appointments.reverse())
       } else {
@@ -54,11 +54,18 @@ function ADashboard() {
       showCancelButton: true,
       confirmButtonText: 'Yes, cancel it!',
       cancelButtonText: 'No, keep it',
-      reverseButtons: true
+      reverseButtons: true,
+      customClass: {
+        popup: 'bg-gray-800 text-white border-2 border-gray-700 rounded-lg shadow-lg',
+        title: 'text-xl font-semibold',
+        content: 'text-lg',
+        confirmButton: 'bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-lg focus:ring-2 focus:ring-blue-500',
+        cancelButton: 'bg-gray-600 text-white hover:bg-gray-700 px-4 py-2 rounded-lg focus:ring-2 focus:ring-gray-500',
+      },
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const response = await axios.post('http://localhost:5000/api/admin/cancel-appointment', { id: appointmentId }, Atoken);
+          const response = await axios.post('https://prescripto-62tm.onrender.com/api/admin/cancel-appointment', { id: appointmentId }, Atoken);
           
           if (response.data.success) {
             getAllAppointments();
@@ -121,7 +128,7 @@ function ADashboard() {
           <div className='pt-4 border border-t-0 border-gray-700'>
             {dashData.latestAppointments.slice(0, 5).map((item, index) => (
               <div className='flex items-center px-6 py-3 gap-3 hover:bg-gray-700' key={index}>
-                <img className='rounded-full w-14' src={`http://localhost:5000${item.docData.image}`} alt="" />
+                <img className='rounded-full w-14' src={`https://prescripto-62tm.onrender.com${item.docData.image}`} alt="" />
                 <div className='flex-1 text-sm'>
                   <p className='text-white font-medium'>{item.docData.name}</p>
                   <p className='text-gray-400'>Booking on {item.slotDate}</p>

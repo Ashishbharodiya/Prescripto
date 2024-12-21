@@ -6,14 +6,14 @@ import icons from '../images/close.png';
 import Swal from 'sweetalert2';
 
 function AllAppointments() {
-    const [cookies] = useCookies(['Atoken']);
+    const [cookies, setCookie, removeCookie] = useCookies(['Atoken']);
     const Atoken = { headers: { Authorization: `Bearer ${cookies?.Atoken}` } };
 
     const [appointments, setAppointments] = useState([]);
 
     const getAllAppointments = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/admin/appointments', Atoken);
+            const response = await axios.get('https://prescripto-62tm.onrender.com/api/admin/appointments', Atoken);
             if (response.data.success) {
                 setAppointments(response.data.appointments.reverse());
             } else {
@@ -36,7 +36,7 @@ function AllAppointments() {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const response = await axios.post('http://localhost:5000/api/admin/cancel-appointment', { appointmentId }, Atoken);
+                    const response = await axios.post('https://prescripto-62tm.onrender.com/api/admin/cancel-appointment', { appointmentId }, Atoken);
                     if (response.data.success) {
                         getAllAppointments();
                         Swal.fire('Cancelled!', 'The appointment has been cancelled.', 'success');
@@ -72,7 +72,7 @@ function AllAppointments() {
                 <div className='flex flex-wrap justify-between max-sm:gap-2 sm:grid sm:grid-cols-[0.5fr_3.5fr_1fr_3fr_4fr_1fr_1fr] items-center text-gray-300 py-3 px-7 border-b border-gray-700 hover:bg-gray-800 bg-gray-900' key={index}>
                     <p className='max-sm:hidden text-white'>{index + 1}</p>
                     <div className='flex items-center gap-2'>
-                        <img src={`http://localhost:5000${item.userData.image}`} className='w-8 rounded-full' alt="" />
+                        <img src={`https://prescripto-62tm.onrender.com${item.userData.image}`} className='w-8 rounded-full' alt="" />
                         <p className='text-white'>{item.userData.userName}</p>
                         <p className='text-white'>{item.userData.firstName}</p>
                         <p className='text-white'>{item.userData.lastName}</p>
@@ -80,7 +80,7 @@ function AllAppointments() {
                     <p className='max-sm:hidden text-white'>{item.userData.age}</p>
                     <p className='text-white'>{item.slotDate}, {item.slotTime}</p>
                     <div className='flex items-center gap-2'>
-                        <img src={`http://localhost:5000${item.docData.image}`} className='w-8 rounded-full bg-gray-600' alt="" />
+                        <img src={`https://prescripto-62tm.onrender.com${item.docData.image}`} className='w-8 rounded-full bg-gray-600' alt="" />
                         <p className='text-white'>{item.docData.name}</p>
                     </div>
                     <p className='text-white'>${item.amount}</p>

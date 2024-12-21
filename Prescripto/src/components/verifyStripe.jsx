@@ -5,7 +5,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 
 function verifyStripe() {
  
-        const [cookies] = useCookies(['token']);
+        const [cookies, setCookie, removeCookie] = useCookies(['token']);
         const token = { headers: { Authorization: `Bearer ${cookies?.token}` } };
        
         const [searchParams, setSearchParams] = useSearchParams()
@@ -17,7 +17,7 @@ function verifyStripe() {
 
             try {
     
-                const response = await axios.get('http://localhost:5000/api/user/verifyStripe', { success, appointmentId }, token);
+                const response = await axios.get('https://prescripto-62tm.onrender.com/api/user/verifyStripe', { success, appointmentId }, token);
 
                 if (response.data.success) {
                     console.log(response.data.doctors);

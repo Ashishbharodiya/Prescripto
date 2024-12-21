@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 
 function Appointment() {
     const { docId } = useParams();
-    const [cookies] = useCookies(['token', 'userId']);
+    const [cookies, setCookie, removeCookie] = useCookies(['token', 'userId']);
     const token = { headers: { Authorization: `Bearer ${cookies?.token}` } };
     const week = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
 
@@ -21,7 +21,7 @@ function Appointment() {
 
     const getAllDoctors = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/user/all-doctors', token);
+            const response = await axios.get('https://prescripto-62tm.onrender.com/api/user/all-doctors', token);
             if (response.data.success) {
                 setDoctors(response.data.doctors);
             } else {
@@ -155,7 +155,7 @@ function Appointment() {
         try {
             setLoading(true);
             const response = await axios.post(
-                'http://localhost:5000/api/user/book-appointment',
+                'https://prescripto-62tm.onrender.com/api/user/book-appointment',
                 {
                     docId,
                     slotDate,
@@ -205,7 +205,7 @@ function Appointment() {
                   <div>
                     <img
                       className="w-full sm:max-w-72 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl"
-                      src={docInfo.image ? `http://localhost:5000${docInfo.image}` : '/path/to/fallback-image.jpg'}
+                      src={docInfo.image ? `https://prescripto-62tm.onrender.com${docInfo.image}` : '/path/to/fallback-image.jpg'}
                       alt={`${docInfo.name}'s photo`}
                     />
                   </div>

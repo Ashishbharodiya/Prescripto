@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 import { GetloginAction } from '../Redux/Action/AdminAction';
 
 function ARegistrationForm() {
-  const [cookies] = useCookies(['Atoken']);
+  const [cookies, setCookie, removeCookie] = useCookies(['Atoken']);
   const Atoken = { headers: { Authorization: `Bearer ${cookies?.Atoken}` } };
 
   const dispatch = useDispatch();

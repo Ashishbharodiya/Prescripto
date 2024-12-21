@@ -5,7 +5,7 @@ import { UserDetailAction } from '../Redux/Action/UseAction';
 import Swal from 'sweetalert2';
 
 function Profile() {
-  const [cookies] = useCookies(['token']);
+  const [cookies, setCookie, removeCookie] = useCookies(['token']);
   const token = { headers: { Authorization: `Bearer ${cookies?.token}` } };
 
   const dispatch = useDispatch();
@@ -54,7 +54,7 @@ function Profile() {
               <div key={userData.id} className="space-y-6">
                 <div className="flex justify-center">
                   <img
-                    src={`http://localhost:5000${state.userDetail?.GetUserDetail?.[0]?.image}`}
+                    src={`https://prescripto-62tm.onrender.com${state.userDetail?.GetUserDetail?.[0]?.image}`}
                     alt="User Profile"
                     className="object-cover rounded-full w-[270px] h-[280px] transition-transform duration-300 hover:scale-110"
                   />

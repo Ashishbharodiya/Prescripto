@@ -18,7 +18,7 @@ function DLoginForm() {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:5000/api/doctor/login', Loginobj, {
+            const response = await axios.post('https://prescripto-62tm.onrender.com/api/doctor/login', Loginobj, {
                 headers: {
                     'Content-Type': 'application/json',
                 },

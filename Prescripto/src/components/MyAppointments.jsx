@@ -4,7 +4,7 @@ import { useCookies } from 'react-cookie';
 import Swal from 'sweetalert2';
 
 function MyAppointments() {
-  const [cookies] = useCookies(['token']);
+  const [cookies, setCookie, removeCookie] = useCookies(['token']);
   const token = { headers: { Authorization: `Bearer ${cookies?.token}` } };
 
   const [doctors, setDoctors] = useState([]);
@@ -13,7 +13,7 @@ function MyAppointments() {
 
   const getUserAppointments = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/user/appointments', token);
+      const response = await axios.get('https://prescripto-62tm.onrender.com/api/user/appointments', token);
 
       if (response.data.success) {
         if (response.data.appointments && response.data.appointments.length > 0) {
@@ -46,7 +46,7 @@ function MyAppointments() {
 
   const getAllDoctors = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/user/all-doctors', token);
+      const response = await axios.get('https://prescripto-62tm.onrender.com/api/user/all-doctors', token);
       if (response.data.success) {
         setDoctors(response.data.doctors);
       } else {
@@ -69,7 +69,7 @@ function MyAppointments() {
 
   const cancelAppointment = async (appointmentId) => {
     try {
-      const response = await axios.post('http://localhost:5000/api/user/cancel-appointment', { appointmentId }, token);
+      const response = await axios.post('https://prescripto-62tm.onrender.com/api/user/cancel-appointment', { appointmentId }, token);
 
       if (response.data.success) {
         Swal.fire({
@@ -100,7 +100,7 @@ function MyAppointments() {
 
   const paidAppointment = async (appointmentId) => {
     try {
-      const response = await axios.post('http://localhost:5000/api/user/cash-payment', { appointmentId }, token);
+      const response = await axios.post('https://prescripto-62tm.onrender.com/api/user/cash-payment', { appointmentId }, token);
 
       if (response.data.success) {
         Swal.fire({
@@ -149,7 +149,7 @@ function MyAppointments() {
               <div className="relative rounded-lg overflow-hidden bg-[#1e1e1e] shadow-lg flex justify-center items-center group">
                 <img
                   className="w-24 h-24 sm:w-36 sm:h-36 object-cover transition-transform duration-300 group-hover:scale-105"
-                  src={appointment.docData.image ? `http://localhost:5000${appointment.docData.image}` : '/path/to/fallback-image.jpg'}
+                  src={appointment.docData.image ? `https://prescripto-62tm.onrender.com${appointment.docData.image}` : '/path/to/fallback-image.jpg'}
                   alt="Doctor"
                 />
                 <div className="absolute inset-0 bg-black opacity-50 group-hover:opacity-30 transition-opacity duration-300"></div>

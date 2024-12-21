@@ -4,7 +4,7 @@ import { useCookies } from 'react-cookie';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 function Verify() {
-    const [cookies] = useCookies(['token']);
+    const [cookies, setCookie, removeCookie] = useCookies(['token']);
     const token = { headers: { Authorization: `Bearer ${cookies?.token}` } };
    
     const [searchParams] = useSearchParams();
@@ -15,7 +15,7 @@ function Verify() {
     const verifyStripe = async () => {
         try {
             const response = await axios.post(
-                'http://localhost:5000/api/user/verifyStripe',
+                'https://prescripto-62tm.onrender.com/api/user/verifyStripe',
                 { success, appointmentId },
                 token
             );

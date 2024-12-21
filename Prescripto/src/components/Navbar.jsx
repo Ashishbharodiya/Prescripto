@@ -77,7 +77,7 @@ const Navbar = () => {
                         aria-haspopup="true"
                     >
                         <img
-                            src={`http://localhost:5000${state.userDetail?.GetUserDetail?.[0]?.image}`}
+                            src={`https://prescripto-62tm.onrender.com${state.userDetail?.GetUserDetail?.[0]?.image}`}
                             alt="User Profile"
                             className="w-14 h-14 rounded-full"
                         />

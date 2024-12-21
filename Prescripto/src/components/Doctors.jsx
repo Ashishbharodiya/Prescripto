@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 function Doctors() {
-  const [cookies] = useCookies(['token']);
+  const [cookies, setCookie, removeCookie] = useCookies(['token']);
   const [filterDoc, setFilterDoc] = useState([]); 
   const [showFilter, setShowFilter] = useState(false);
   const [specialization, setSpecialization] = useState('');
@@ -28,7 +28,7 @@ function Doctors() {
         }
       });
 
-      const response = await axios.get('http://localhost:5000/api/user/all-doctors', token);
+      const response = await axios.get('https://prescripto-62tm.onrender.com/api/user/all-doctors', token);
 
       if (response.data.success) {
         setFilterDoc(response.data.doctors);
@@ -100,7 +100,7 @@ function Doctors() {
             >
               <img
                 className="w-full h-56 object-cover bg-[#2C2C2C]"
-                src={item.image ? `http://localhost:5000${item.image}` : '/path/to/fallback-image.jpg'}
+                src={item.image ? `https://prescripto-62tm.onrender.com${item.image}` : '/path/to/fallback-image.jpg'}
                 alt={item.name}
               />
               <div className="p-4">

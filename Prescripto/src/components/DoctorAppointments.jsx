@@ -6,14 +6,14 @@ import Swal from 'sweetalert2';
 
 function DoctorAppointments() {
 
-  const [cookies] = useCookies(['Dtoken']);
+  const [cookies, setCookie, removeCookie] = useCookies(['Dtoken']);
   const Dtoken = { headers: { Authorization: `Bearer ${cookies?.Dtoken}` } };
 
   const [appointments, setAppointments] = useState([]);
 
   const getAppointments = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/doctor/appointments', Dtoken);
+      const response = await axios.get('https://prescripto-62tm.onrender.com/api/doctor/appointments', Dtoken);
       if (response.data.success) {
         setAppointments(response.data.appointments.reverse());
       } else {
@@ -44,7 +44,7 @@ function DoctorAppointments() {
       if (result.isConfirmed) {
         try {
           const response = await axios.post(
-            'http://localhost:5000/api/doctor/complete-appointment',
+            'https://prescripto-62tm.onrender.com/api/doctor/complete-appointment',
             { docId: cookies.Dtoken, appointmentId },
             Dtoken
           );
@@ -85,7 +85,7 @@ function DoctorAppointments() {
       if (result.isConfirmed) {
         try {
           const response = await axios.post(
-            'http://localhost:5000/api/doctor/cancel-appointment',
+            'https://prescripto-62tm.onrender.com/api/doctor/cancel-appointment',
             { docId: cookies.Dtoken, appointmentId },
             Dtoken
           );
@@ -146,7 +146,7 @@ function DoctorAppointments() {
 
             <div className='flex items-center gap-1'>
               <img
-                src={`http://localhost:5000${item.userData.image}`}
+                src={`https://prescripto-62tm.onrender.com${item.userData.image}`}
                 className='w-8 rounded-full'
                 alt=''
               />

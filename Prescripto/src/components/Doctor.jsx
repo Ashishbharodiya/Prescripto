@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 
 function Doctor() {
 
-  const [cookies] = useCookies(['Dtoken']);
+  const [cookies, setCookie, removeCookie] = useCookies(['Dtoken']);
   const Dtoken = { headers: { Authorization: `Bearer ${cookies?.Dtoken}` } };
 
   const [dashData, setDashData] = useState(false);
@@ -15,7 +15,7 @@ function Doctor() {
 
   const getDashData = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/doctor/dashboard', Dtoken);
+      const response = await axios.get('https://prescripto-62tm.onrender.com/api/doctor/dashboard', Dtoken);
       if (response.data.success) {
         setDashData(response.data.dashData);
       } else {
@@ -36,7 +36,7 @@ function Doctor() {
 
   const getAppointments = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/doctor/appointments', Dtoken);
+      const response = await axios.get('https://prescripto-62tm.onrender.com/api/doctor/appointments', Dtoken);
       if (response.data.success) {
         setAppointments(response.data.appointments.reverse());
       } else {
@@ -58,7 +58,7 @@ function Doctor() {
   const completeAppointment = async (appointmentId) => {
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/doctor/complete-appointment',
+        'https://prescripto-62tm.onrender.com/api/doctor/complete-appointment',
         { docId: cookies.Dtoken, appointmentId: appointmentId },
         Dtoken
       );
@@ -89,7 +89,7 @@ function Doctor() {
   const cancelAppointment = async (appointmentId) => {
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/doctor/cancel-appointment',
+        'https://prescripto-62tm.onrender.com/api/doctor/cancel-appointment',
         { docId: cookies.Dtoken, appointmentId },
         Dtoken
       );
@@ -163,7 +163,7 @@ function Doctor() {
           <div className='pt-4 border border-t-0 border-gray-800 dark:border-gray-700'>
             {dashData.latestAppointments.slice(0, 5).map((item, index) => (
               <div className='flex items-center px-6 py-3 gap-3 hover:bg-gray-800 dark:hover:bg-gray-700' key={index}>
-                <img className='rounded-full w-10' src={`http://localhost:5000${item.docData.image}`} alt="" />
+                <img className='rounded-full w-10' src={`https://prescripto-62tm.onrender.com${item.docData.image}`} alt="" />
                 <div className='flex-1 text-sm'>
                   <p className='text-white font-medium'>{item.userData.name}</p>
                   <p className='text-gray-400 dark:text-gray-300'>Booking on {item.slotDate}</p>

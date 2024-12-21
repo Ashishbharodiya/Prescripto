@@ -11,7 +11,7 @@ function AddDoctor() {
     const [blank,setblank] = useState({})
     const navigate = useNavigate();
 
-    const [cookies] = useCookies(['Atoken']);
+    const [cookies, setCookie, removeCookie] = useCookies(['Atoken']);
     const Atoken = { headers: { Authorization: `Bearer ${cookies?.Atoken}` } };
 
 
@@ -61,7 +61,7 @@ function AddDoctor() {
         formData.append('image', obj.profileImage);
     
         try {
-        const response = await axios.post('http://localhost:5000/api/admin/add-doctor', formData, Atoken);
+        const response = await axios.post('https://prescripto-62tm.onrender.com/api/admin/add-doctor', formData, Atoken);
      
 
         console.log('Registration successful:', response.data);
@@ -71,6 +71,10 @@ function AddDoctor() {
             text: 'You have been registered successfully.',
             icon: 'success',
             confirmButtonText: 'OK',
+            customClass: {
+              popup: 'bg-gray-800 text-gray-100',
+              confirmButton: 'bg-blue-600 text-white hover:bg-blue-700'
+            }    
           });
     
           setObj({});
@@ -83,6 +87,10 @@ function AddDoctor() {
             text: 'There was an issue with your registration. Please try again later.',
             icon: 'error',
             confirmButtonText: 'Try Again',
+            customClass: {
+              popup: 'bg-gray-800 text-gray-100',
+              confirmButton: 'bg-red-600 text-white hover:bg-red-700'
+            }
           });
         }
       };
