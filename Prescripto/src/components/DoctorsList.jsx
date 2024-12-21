@@ -88,14 +88,14 @@ const DoctorsList = () => {
     return (
         <div className="min-h-screen bg-gray-900 text-white p-5">
             <h1 className="text-3xl font-semibold mb-6 text-white">All Doctors</h1>
-            <div className="w-full flex flex-wrap gap-3 pt-5">
+            <div className="w-full flex flex-wrap gap-6 pt-5">
                 {loading ? (
                     <p className="text-center text-white">Loading doctors...</p>
                 ) : (
                     doctors.map((item) => (
                         <div
                             key={item._id}
-                            className="border border-[#444444] rounded-xl max-w-[300px] w-full overflow-hidden cursor-pointer group hover:scale-105 transition-transform duration-300"
+                            className="border border-[#444444] rounded-xl max-w-[250px] w-full overflow-hidden cursor-pointer group hover:scale-105 transition-transform duration-300"
                         >
                             <img
                                 className="w-full h-48 object-cover bg-[#2E2E2E] group-hover:bg-[#1A73E8] transition-all duration-500"
