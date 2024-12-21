@@ -95,7 +95,7 @@ const DoctorsList = () => {
                     doctors.map((item) => (
                         <div
                             key={item._id}
-                            className="border border-[#444444] rounded-xl max-w-[250px] w-full overflow-hidden cursor-pointer group hover:scale-105 transition-transform duration-300"
+                            className="border border-[#444444] rounded-xl max-w-[230px] w-full overflow-hidden cursor-pointer group hover:scale-105 transition-transform duration-300"
                         >
                             <img
                                 className="w-full h-48 object-cover bg-[#2E2E2E] group-hover:bg-[#1A73E8] transition-all duration-500"
