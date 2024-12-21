@@ -16,7 +16,6 @@ const userSchema = new Schema({
   email: {
     type: String,
     required: true, 
-    unique: true,
     lowercase: true
   },
   phoneNumber: {
@@ -30,7 +29,6 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true, 
-    unique: true
   },
   image: {
     type: String,
