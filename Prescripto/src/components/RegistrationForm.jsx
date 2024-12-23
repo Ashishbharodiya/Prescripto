@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify'
 
 function RegistrationForm() {
   const [obj, setObj] = useState({});
@@ -42,30 +42,14 @@ function RegistrationForm() {
         },
       });
       console.log('Registration successful:', response.data);
-
-      Swal.fire({
-        title: 'Registration Successful!',
-        text: 'You have been registered successfully.',
-        icon: 'success',
-        confirmButtonText: 'OK',
-        background: '#1f2937', // Dark background for Swal modal
-        color: '#fff', // White text color
-        confirmButtonColor: '#2563eb', // Button color
-      });
-
+      toast.success(response.data.message);
       navigate(`/Login`);
       setObj({});
       setObj({ ...blank });
     } catch (error) {
-      Swal.fire({
-        title: 'Error!',
-        text: 'There was an issue with your registration. Please try again later.',
-        icon: 'error',
-        confirmButtonText: 'Try Again',
-        background: '#1f2937', // Dark background for Swal modal
-        color: '#fff', // White text color
-        confirmButtonColor: '#dc2626', // Button color for errors
-      });
+       console.log(error);
+       toast.error(data.message)
+
     }
   };
 

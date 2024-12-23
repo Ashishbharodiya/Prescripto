@@ -28,12 +28,15 @@ import Anavbar from './components/Anavbar';
 import Usidebar from './components/Usidebar';
 import Udashboard from './components/Udashboard';
 import Dnavbar from './components/Dnavbar';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [cookies] = useCookies(['token', 'Atoken', 'Dtoken']);
 
   return (
     <BrowserRouter>
+
         {!cookies.token ? (
           <>
             <Routes>
@@ -48,6 +51,7 @@ function App() {
         ) : (
           <>
             <div>
+            <ToastContainer />
             <Navbar/>  
             <div  className='flex w-full h-full '>
             <Usidebar />
