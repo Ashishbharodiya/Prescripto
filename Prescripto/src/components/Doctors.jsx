@@ -28,7 +28,7 @@ function Doctors() {
         }
       });
 
-      const response = await axios.get('https://prescripto-62tm.onrender.com/api/user/all-doctors', token);
+      const response = await axios.get('https://prescripto-4-wlnz.onrender.com/api/user/all-doctors', token);
 
       if (response.data.success) {
         setFilterDoc(response.data.doctors);
