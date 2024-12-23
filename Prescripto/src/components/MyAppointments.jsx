@@ -149,7 +149,7 @@ function MyAppointments() {
               <div className="relative rounded-lg overflow-hidden bg-[#1e1e1e] shadow-lg flex justify-center items-center group">
                 <img
                   className="w-24 h-24 sm:w-36 sm:h-36 object-cover transition-transform duration-300 group-hover:scale-105"
-                  src={appointment.docData.image ? `https://prescripto-62tm.onrender.com${appointment.docData.image}` : '/path/to/fallback-image.jpg'}
+                  src={appointment.docData.image ? `https://prescripto-3-ry9r.onrender.com${appointment.docData.image}` : '/path/to/fallback-image.jpg'}
                   alt="Doctor"
                 />
                 <div className="absolute inset-0 bg-black opacity-50 group-hover:opacity-30 transition-opacity duration-300"></div>
