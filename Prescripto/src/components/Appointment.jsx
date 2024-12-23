@@ -21,7 +21,7 @@ function Appointment() {
 
     const getAllDoctors = async () => {
         try {
-            const response = await axios.get('https://prescripto-5-mkim.onrender.com/api/user/all-doctors', token);
+            const response = await axios.get('https://prescripto-3-ry9r.onrender.com/api/user/all-doctors', token);
             if (response.data.success) {
                 setDoctors(response.data.doctors);
             } else {
@@ -155,7 +155,7 @@ function Appointment() {
         try {
             setLoading(true);
             const response = await axios.post(
-                'https://prescripto-5-mkim.onrender.com/api/user/book-appointment',
+                'https://prescripto-3-ry9r.onrender.com/api/user/book-appointment',
                 {
                     docId,
                     slotDate,
