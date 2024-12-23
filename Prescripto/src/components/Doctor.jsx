@@ -15,7 +15,7 @@ function Doctor() {
 
   const getDashData = async () => {
     try {
-      const response = await axios.get('https://prescripto-62tm.onrender.com/api/doctor/dashboard', Dtoken);
+      const response = await axios.get('https://prescripto-4-wlnz.onrender.com/api/doctor/dashboard', Dtoken);
       if (response.data.success) {
         setDashData(response.data.dashData);
       } else {
@@ -36,7 +36,7 @@ function Doctor() {
 
   const getAppointments = async () => {
     try {
-      const response = await axios.get('https://prescripto-62tm.onrender.com/api/doctor/appointments', Dtoken);
+      const response = await axios.get('https://prescripto-4-wlnz.onrender.com/api/doctor/appointments', Dtoken);
       if (response.data.success) {
         setAppointments(response.data.appointments.reverse());
       } else {
@@ -58,7 +58,7 @@ function Doctor() {
   const completeAppointment = async (appointmentId) => {
     try {
       const response = await axios.post(
-        'https://prescripto-62tm.onrender.com/api/doctor/complete-appointment',
+        'https://prescripto-4-wlnz.onrender.com/api/doctor/complete-appointment',
         { docId: cookies.Dtoken, appointmentId: appointmentId },
         Dtoken
       );
@@ -89,7 +89,7 @@ function Doctor() {
   const cancelAppointment = async (appointmentId) => {
     try {
       const response = await axios.post(
-        'https://prescripto-62tm.onrender.com/api/doctor/cancel-appointment',
+        'https://prescripto-4-wlnz.onrender.com/api/doctor/cancel-appointment',
         { docId: cookies.Dtoken, appointmentId },
         Dtoken
       );
