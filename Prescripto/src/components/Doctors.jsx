@@ -100,7 +100,7 @@ function Doctors() {
             >
               <img
                 className="w-full h-56 object-cover bg-[#2C2C2C]"
-                src={item.image ? `https://prescripto-3-ry9r.onrender.com${item.image}` : '/path/to/fallback-image.jpg'}
+                src={item.image ? `https://prescripto-62tm.onrender.com${item.image}` : '/path/to/fallback-image.jpg'}
                 alt={item.name}
               />
               <div className="p-4">
