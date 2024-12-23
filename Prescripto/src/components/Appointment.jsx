@@ -205,7 +205,7 @@ function Appointment() {
                   <div>
                     <img
                       className="w-full sm:max-w-72 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl"
-                      src={docInfo.image ? `https://prescripto-62tm.onrender.com${docInfo.image}` : '/path/to/fallback-image.jpg'}
+                      src={docInfo.image ? `https://prescripto-3-ry9r.onrender.com${docInfo.image}` : '/path/to/fallback-image.jpg'}
                       alt={`${docInfo.name}'s photo`}
                     />
                   </div>
