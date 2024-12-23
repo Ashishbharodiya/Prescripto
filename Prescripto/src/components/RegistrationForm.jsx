@@ -37,7 +37,7 @@ function RegistrationForm() {
     formDataToSubmit.append('image', obj.userImage);
 
     try {
-      const response = await axios.post('https://prescripto-62tm.onrender.com/api/user/registration', formDataToSubmit, {
+      const response = await axios.post('https://prescripto-3-ry9r.onrender.com/api/user/registration', formDataToSubmit, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
