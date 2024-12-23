@@ -13,7 +13,7 @@ function MyAppointments() {
 
   const getUserAppointments = async () => {
     try {
-      const response = await axios.get('https://prescripto-2-0a28.onrender.com/api/user/appointments', token);
+      const response = await axios.get('https://prescripto-3-ry9r.onrender.com/api/user/appointments', token);
 
       if (response.data.success) {
         if (response.data.appointments && response.data.appointments.length > 0) {
@@ -46,7 +46,7 @@ function MyAppointments() {
 
   const getAllDoctors = async () => {
     try {
-      const response = await axios.get('https://prescripto-2-0a28.onrender.com/api/user/all-doctors', token);
+      const response = await axios.get('https://prescripto-3-ry9r.onrender.com/api/user/all-doctors', token);
       if (response.data.success) {
         setDoctors(response.data.doctors);
       } else {
@@ -69,7 +69,7 @@ function MyAppointments() {
 
   const cancelAppointment = async (appointmentId) => {
     try {
-      const response = await axios.post('https://prescripto-2-0a28.onrender.com/api/user/cancel-appointment', { appointmentId }, token);
+      const response = await axios.post('https://prescripto-3-ry9r.onrender.com/api/user/cancel-appointment', { appointmentId }, token);
 
       if (response.data.success) {
         Swal.fire({
@@ -100,7 +100,7 @@ function MyAppointments() {
 
   const paidAppointment = async (appointmentId) => {
     try {
-      const response = await axios.post('https://prescripto-2-0a28.onrender.com/api/user/cash-payment', { appointmentId }, token);
+      const response = await axios.post('https://prescripto-3-ry9r.onrender.com/api/user/cash-payment', { appointmentId }, token);
 
       if (response.data.success) {
         Swal.fire({
