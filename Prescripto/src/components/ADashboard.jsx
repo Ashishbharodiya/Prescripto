@@ -22,7 +22,7 @@ function ADashboard() {
 
   const getDashData = async () => {
     try {
-      const response = await axios.get('https://prescripto-62tm.onrender.com/api/admin/dashboard', Atoken);
+      const response = await axios.get('https://prescripto-6.onrender.com/api/admin/dashboard', Atoken);
       if (response.data.success) {
         setDashData(response.data.dashData);
       } else {
@@ -35,7 +35,7 @@ function ADashboard() {
 
   const getAllAppointments = async () => {
     try {
-      const response = await axios.get('https://prescripto-62tm.onrender.com/api/admin/appointments', Atoken);
+      const response = await axios.get('https://prescripto-6.onrender.com/api/admin/appointments', Atoken);
       if (response.data.success) {
         setAppointments(response.data.appointments.reverse())
       } else {
@@ -65,7 +65,7 @@ function ADashboard() {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const response = await axios.post('https://prescripto-62tm.onrender.com/api/admin/cancel-appointment', { id: appointmentId }, Atoken);
+          const response = await axios.post('https://prescripto-6.onrender.com/api/admin/cancel-appointment', { id: appointmentId }, Atoken);
           
           if (response.data.success) {
             getAllAppointments();
