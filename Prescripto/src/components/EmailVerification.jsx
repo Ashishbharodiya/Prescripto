@@ -12,7 +12,7 @@ const EmailVerification = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://prescripto-62tm.onrender.com/api/user/verifyEmail', { email });
+      const response = await axios.post('https://prescripto-1-qo8n.onrender.com/api/user/verifyEmail', { email });
 
       if (response.data.status) {
         Swal.fire({
