@@ -18,7 +18,7 @@ function DLoginForm() {
         e.preventDefault();
 
         try {
-            const response = await axios.post('https://prescripto-5-mkim.onrender.com/api/doctor/login', Loginobj, {
+            const response = await axios.post('https://prescripto-3-ry9r.onrender.com/api/doctor/login', Loginobj, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
