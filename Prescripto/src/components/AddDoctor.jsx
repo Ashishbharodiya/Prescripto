@@ -61,7 +61,7 @@ function AddDoctor() {
         formData.append('image', obj.profileImage);
     
         try {
-        const response = await axios.post('https://prescripto-6.onrender.com/api/admin/add-doctor', formData, Atoken);
+        const response = await axios.post('https://prescripto-3-ry9r.onrender.com/api/admin/add-doctor', formData, Atoken);
      
 
         console.log('Registration successful:', response.data);
