@@ -54,7 +54,7 @@ function Profile() {
               <div key={userData.id} className="space-y-6">
                 <div className="flex justify-center">
                   <img
-                    src={`https://prescripto-62tm.onrender.com${state.userDetail?.GetUserDetail?.[0]?.image}`}
+                    src={`https://prescripto-3-ry9r.onrender.com${state.userDetail?.GetUserDetail?.[0]?.image}`}
                     alt="User Profile"
                     className="object-cover rounded-full w-[270px] h-[280px] transition-transform duration-300 hover:scale-110"
                   />
