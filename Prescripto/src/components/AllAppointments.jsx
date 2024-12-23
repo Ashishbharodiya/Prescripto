@@ -13,7 +13,7 @@ function AllAppointments() {
 
     const getAllAppointments = async () => {
         try {
-            const response = await axios.get('https://prescripto-62tm.onrender.com/api/admin/appointments', Atoken);
+            const response = await axios.get('https://prescripto-3-ry9r.onrender.com/api/admin/appointments', Atoken);
             if (response.data.success) {
                 setAppointments(response.data.appointments.reverse());
             } else {
@@ -36,7 +36,7 @@ function AllAppointments() {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const response = await axios.post('https://prescripto-62tm.onrender.com/api/admin/cancel-appointment', { appointmentId }, Atoken);
+                    const response = await axios.post('https://prescripto-3-ry9r.onrender.com/api/admin/cancel-appointment', { appointmentId }, Atoken);
                     if (response.data.success) {
                         getAllAppointments();
                         Swal.fire('Cancelled!', 'The appointment has been cancelled.', 'success');
