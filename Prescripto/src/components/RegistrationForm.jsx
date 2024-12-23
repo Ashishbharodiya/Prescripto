@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify'
+import Swal from 'sweetalert2'; 
 
 function RegistrationForm() {
   const [obj, setObj] = useState({});
@@ -43,12 +44,24 @@ function RegistrationForm() {
       });
       console.log('Registration successful:', response.data);
       toast.success(response.data.message);
+        Swal.fire({
+        title: 'Success!',
+        text: response.data.message,
+        icon: 'success',
+        confirmButtonColor: '#4CAF50',
+      });
       navigate(`/Login`);
       setObj({});
       setObj({ ...blank });
     } catch (error) {
        console.log(error);
        toast.error(data.message)
+        Swal.fire({
+        title: 'Error!',
+        text: error.response?.data?.message || 'Something went wrong!',
+        icon: 'error',
+        confirmButtonColor: '#f44336',
+      });
 
     }
   };
