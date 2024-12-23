@@ -35,7 +35,7 @@ const ForgetPassword = () => {
     }
 
     try {
-      const response = await axios.post('https://prescripto-62tm.onrender.com/api/user/forgetPassword', {
+      const response = await axios.post('https://prescripto-1-qo8n.onrender.com/api/user/forgetPassword', {
         id,
         resetpasswordToken,  
         newPassword,
