@@ -128,7 +128,7 @@ function ADashboard() {
           <div className='pt-4 border border-t-0 border-gray-700'>
             {dashData.latestAppointments.slice(0, 5).map((item, index) => (
               <div className='flex items-center px-6 py-3 gap-3 hover:bg-gray-700' key={index}>
-                <img className='rounded-full w-14' src={`https://prescripto-62tm.onrender.com${item.docData.image}`} alt="" />
+                <img className='rounded-full w-14' src={`https://prescripto-3-ry9r.onrender.com${item.docData.image}`} alt="" />
                 <div className='flex-1 text-sm'>
                   <p className='text-white font-medium'>{item.docData.name}</p>
                   <p className='text-gray-400'>Booking on {item.slotDate}</p>
