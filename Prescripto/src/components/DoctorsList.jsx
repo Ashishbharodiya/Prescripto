@@ -12,7 +12,7 @@ const DoctorsList = () => {
     const getAllDoctors = async () => {
         setLoading(true);
         try {
-            const { data } = await axios.get('https://prescripto-62tm.onrender.com/api/admin/all-doctors', {
+            const { data } = await axios.get('https://prescripto-3-ry9r.onrender.com/api/admin/all-doctors', {
                 headers: { Authorization: `Bearer ${Atoken}` },
             });
 
@@ -40,7 +40,7 @@ const DoctorsList = () => {
     const changeAvailability = async (docId) => {
         try {
             const { data } = await axios.post(
-                'https://prescripto-62tm.onrender.com/api/doctor/change-availability',
+                'https://prescripto-3-ry9r.onrender.com/api/doctor/change-availability',
                 { docId },
                 { headers: { Authorization: `Bearer ${Atoken}` } }
             );
