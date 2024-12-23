@@ -4,7 +4,7 @@ export const GetloginAction = (formData, Atoken) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
-        "https://prescripto-62tm.onrender.com/api/admin/registration", 
+        "https://prescripto-7.onrender.com/api/admin/registration", 
         formData, 
         Atoken 
       );
