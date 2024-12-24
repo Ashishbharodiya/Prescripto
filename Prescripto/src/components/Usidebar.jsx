@@ -30,67 +30,68 @@ function Usidebar() {
     };
 
     return (
-        <div className="min-h-screen border-r">
-            {token && (
-                <ul className="text-[#515151] mt-5 dark:bg-gray-800">
-                    <NavLink
-                        to="/user/dashboard"
-                        className={({ isActive }) =>
-                            `flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-72 cursor-pointer dark:bg-gray-800  ${
-                                isActive ? 'bg-gray-800 border-r-4 border-primary' : ''
-                            }`
-                        }
-                    >
-                        <FaHome className="min-w-4 text-white" />
-                        <p className="hidden md:block text-white">Dashboard</p>
-                    </NavLink>
+       <div className="min-h-screen border-r">
+    {token && (
+        <ul className="text-[#515151] mt-5 dark:bg-gray-800">
+            <NavLink
+                to="/user/dashboard"
+                className={({ isActive }) =>
+                    `flex items-center gap-3 py-3.5 px-3 sm:px-6 md:px-9 lg:px-10 xl:px-12 cursor-pointer dark:bg-gray-800 ${
+                        isActive ? 'bg-gray-800 border-r-4 border-primary' : ''
+                    }`
+                }
+            >
+                <FaHome className="min-w-4 text-white" />
+                <p className="hidden sm:block text-white">Dashboard</p>
+            </NavLink>
 
-                    <NavLink
-                        to="/doctors"
-                        className={({ isActive }) =>
-                            `flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-72 cursor-pointer ${
-                                isActive ? 'bg-gray-800 border-r-4 border-primary' : ''
-                            }`
-                        }
-                    >
-                        <FaCalendarAlt className="min-w-4 text-white" />
-                        <p className="hidden md:block text-white">Doctors</p>
-                    </NavLink>
+            <NavLink
+                to="/doctors"
+                className={({ isActive }) =>
+                    `flex items-center gap-3 py-3.5 px-3 sm:px-6 md:px-9 lg:px-10 xl:px-12 cursor-pointer ${
+                        isActive ? 'bg-gray-800 border-r-4 border-primary' : ''
+                    }`
+                }
+            >
+                <FaCalendarAlt className="min-w-4 text-white" />
+                <p className="hidden sm:block text-white">Doctors</p>
+            </NavLink>
 
-                    <NavLink
-                        to="/my-appointments"
-                        className={({ isActive }) =>
-                            `flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-72 cursor-pointer ${
-                                isActive ? 'bg-gray-800 border-r-4 border-primary' : ''
-                            }`
-                        }
-                    >
-                        <MdAdminPanelSettings className="min-w-4 text-white" />
-                        <p className="hidden md:block text-white">MyAppointments</p>
-                    </NavLink>
+            <NavLink
+                to="/my-appointments"
+                className={({ isActive }) =>
+                    `flex items-center gap-3 py-3.5 px-3 sm:px-6 md:px-9 lg:px-10 xl:px-12 cursor-pointer ${
+                        isActive ? 'bg-gray-800 border-r-4 border-primary' : ''
+                    }`
+                }
+            >
+                <MdAdminPanelSettings className="min-w-4 text-white" />
+                <p className="hidden sm:block text-white">MyAppointments</p>
+            </NavLink>
 
-                    <NavLink
-                        to="/profile"
-                        className={({ isActive }) =>
-                            `flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-72 cursor-pointer ${
-                                isActive ? 'bg-gray-800 border-r-4 border-primary' : ''
-                            }`
-                        }
-                    >
-                        <FaUsers className="min-w-4 text-white" />
-                        <p className="hidden md:block text-white">Profile</p>
-                    </NavLink>
+            <NavLink
+                to="/profile"
+                className={({ isActive }) =>
+                    `flex items-center gap-3 py-3.5 px-3 sm:px-6 md:px-9 lg:px-10 xl:px-12 cursor-pointer ${
+                        isActive ? 'bg-gray-800 border-r-4 border-primary' : ''
+                    }`
+                }
+            >
+                <FaUsers className="min-w-4 text-white" />
+                <p className="hidden sm:block text-white">Profile</p>
+            </NavLink>
 
-                    <button
-                        className="flex items-center gap-3 py-3.5 px-3 md:px-9 md:min-w-72 cursor-pointer"
-                        onClick={() => logout()}
-                    >
-                        <FaSignOutAlt className="min-w-4 text-white" />
-                        <p className="hidden md:block text-white">Logout</p>
-                    </button>
-                </ul>
-            )}
-        </div>
+            <button
+                className="flex items-center gap-3 py-3.5 px-3 sm:px-6 md:px-9 lg:px-10 xl:px-12 cursor-pointer"
+                onClick={() => logout()}
+            >
+                <FaSignOutAlt className="min-w-4 text-white" />
+                <p className="hidden sm:block text-white">Logout</p>
+            </button>
+        </ul>
+    )}
+</div>
+
     );
 }
 
