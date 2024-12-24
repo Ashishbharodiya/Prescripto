@@ -1,11 +1,23 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify'
+import { toast } from 'react-toastify';
 import Swal from 'sweetalert2'; 
 
 function RegistrationForm() {
-  const [obj, setObj] = useState({});
+  const [obj, setObj] = useState({
+    userName: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    phoneNumber: '',
+    gender: '',
+    password: '',
+    confirmpassword: '',
+    age: '',
+    address: '',
+    userImage: null,
+  });
   const [blank, setBlank] = useState({});
   const navigate = useNavigate();
 
@@ -21,8 +33,8 @@ function RegistrationForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setBlank({ ...blank });
-
+    setBlank({});
+    
     const formDataToSubmit = new FormData();
     formDataToSubmit.append('userName', obj.userName);
     formDataToSubmit.append('firstName', obj.firstName);
@@ -42,27 +54,45 @@ function RegistrationForm() {
           'Content-Type': 'multipart/form-data',
         },
       });
+
       console.log('Registration successful:', response.data);
       toast.success(response.data.message);
-        Swal.fire({
+
+      Swal.fire({
         title: 'Success!',
         text: response.data.message,
         icon: 'success',
         confirmButtonColor: '#4CAF50',
       });
+
       navigate(`/Login`);
-      setObj({});
-      setObj({ ...blank });
+      
+      setObj({
+        userName: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        phoneNumber: '',
+        gender: '',
+        password: '',
+        confirmpassword: '',
+        age: '',
+        address: '',
+        userImage: null,
+      });
+
     } catch (error) {
-       console.log(error);
-       toast.error(data.message)
-        Swal.fire({
+      console.error(error);
+      
+      const errorMessage = error.response?.data?.message || 'Something went wrong!';
+      toast.error(errorMessage);
+
+      Swal.fire({
         title: 'Error!',
-        text: error.response?.data?.message || 'Something went wrong!',
+        text: errorMessage,
         icon: 'error',
         confirmButtonColor: '#f44336',
       });
-
     }
   };
 
