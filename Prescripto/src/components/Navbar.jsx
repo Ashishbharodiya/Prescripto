@@ -61,7 +61,7 @@ const Navbar = () => {
     };
     
     return (
-       <div className="flex items-center justify-between text-sm py-1 bg-gray-900 dark:bg-gray-800 border-b border-b-[#ADADAD]">
+       <div className="flex items-center justify-between text-sm py-1 bg-gray-900 dark:bg-gray-800 border-b border-b-[#ADADAD] border-w-[6000px]">
     <div className="flex items-center justify-between pe-2 sm:pe-3 md:pe-4 lg:pe-5 xl:pe-6 2xl:pe-8">
         <img className="cursor-pointer w-[90px] sm:w-[100px] md:w-[110px] lg:w-[120px] xl:w-[130px] 2xl:w-[140px]" src={logo} alt="Logo" />
         <p className='border px-2.5 py-0.5 rounded-full border-gray-500 text-white text-xs sm:text-sm md:text-base lg:text-lg'>
