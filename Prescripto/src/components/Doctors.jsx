@@ -98,11 +98,11 @@ function Doctors() {
               className="border border-[#4B4B4B] rounded-xl overflow-hidden cursor-pointer transform hover:scale-105 transition-all duration-500"
               key={index}
             >
-              <img
-                className="w-full h-56 object-cover bg-[#2C2C2C]"
-                src={item.image ? `https://prescripto-3-ry9r.onrender.com${item.image}` : '/path/to/fallback-image.jpg'}
-                alt={item.name}
-              />
+             <img
+  className="w-full h-56 object-cover bg-[#2C2C2C]"
+  src={item.image ? `https://prescripto-3-ry9r.onrender.com${item.image}` : '/path/to/fallback-image.jpg'}
+  alt={item.name}
+/>
               <div className="p-4">
                 <div className={`flex items-center gap-2 text-sm text-center ${item.available ? 'text-green-500' : 'text-gray-400'}`}>
                   <p className={`w-2 h-2 rounded-full ${item.available ? 'bg-green-500' : 'bg-gray-500'}`}></p>
