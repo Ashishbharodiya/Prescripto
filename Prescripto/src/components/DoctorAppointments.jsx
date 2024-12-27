@@ -5,13 +5,14 @@ import { FaTimes, FaCheck } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 
 function DoctorAppointments() {
-
   const [cookies, setCookie, removeCookie] = useCookies(['Dtoken']);
   const Dtoken = { headers: { Authorization: `Bearer ${cookies?.Dtoken}` } };
 
   const [appointments, setAppointments] = useState([]);
+  const [loading, setLoading] = useState(false); // Added loading state
 
   const getAppointments = async () => {
+    setLoading(true); // Set loading to true when fetching data
     try {
       const response = await axios.get('https://prescripto-66h4.onrender.com/api/doctor/appointments', Dtoken);
       if (response.data.success) {
@@ -29,6 +30,8 @@ function DoctorAppointments() {
         title: 'Error',
         text: 'An error occurred while fetching appointments.',
       });
+    } finally {
+      setLoading(false); // Set loading to false after the request completes
     }
   };
 
@@ -137,54 +140,60 @@ function DoctorAppointments() {
           <p>Action</p>
         </div>
 
-        {appointments.map((item, index) => (
-          <div
-            className='flex flex-wrap justify-between max-sm:gap-5 max-sm:text-base sm:grid grid-cols-[0.5fr_3fr_1fr_1fr_3fr_1fr_1fr] gap-1 items-center text-gray-400 py-3 px-6 border-b border-gray-700 bg-gray-900 hover:bg-gray-800'
-            key={index}
-          >
-            <p className='max-sm:hidden'>{index}</p>
-
-            <div className='flex items-center gap-1'>
-              <img
-                src={`https://prescripto-66h4.onrender.com${item.userData.image}`}
-                className='w-8 rounded-full'
-                alt=''
-              />
-              <p>{item.userData.userName}</p>
-              <p>{item.userData.firstName}</p>
-              <p>{item.userData.lastName}</p>
-            </div>
-
-            <div>
-              <p className='text-xs inline border border-primary px-2 rounded-full'>
-                {item.payment ? 'CANCEL' : 'CASH'}
-              </p>
-            </div>
-
-            <p className='max-sm:hidden'>{item.userData.age}</p>
-            <p>
-              {item.slotDate}, {item.slotTime}
-            </p>
-            <p>{item.amount}</p>
-
-            {item.cancelled ? (
-              <p className='text-red-400 text-xs font-medium'>Cancelled</p>
-            ) : item.isCompleted ? (
-              <p className='text-green-500 text-xs font-medium'>Completed</p>
-            ) : (
-              <div className='flex'>
-                <FaTimes
-                  onClick={() => cancelAppointment(item._id)}
-                  className='w-10 cursor-pointer text-red-500'
-                />
-                <FaCheck
-                  onClick={() => completeAppointment(item._id)}
-                  className='w-10 cursor-pointer text-green-500'
-                />
-              </div>
-            )}
+        {loading ? (
+          <div className="w-full text-center py-10">
+            <div className="w-20 h-20 border-4 border-gray-300 border-t-4 border-t-primary rounded-full animate-spin mx-auto"></div>
           </div>
-        ))}
+        ) : (
+          appointments.map((item, index) => (
+            <div
+              className='flex flex-wrap justify-between max-sm:gap-5 max-sm:text-base sm:grid grid-cols-[0.5fr_3fr_1fr_1fr_3fr_1fr_1fr] gap-1 items-center text-gray-400 py-3 px-6 border-b border-gray-700 bg-gray-900 hover:bg-gray-800'
+              key={index}
+            >
+              <p className='max-sm:hidden'>{index}</p>
+
+              <div className='flex items-center gap-1'>
+                <img
+                  src={`https://prescripto-66h4.onrender.com${item.userData.image}`}
+                  className='w-8 rounded-full'
+                  alt=''
+                />
+                <p>{item.userData.userName}</p>
+                <p>{item.userData.firstName}</p>
+                <p>{item.userData.lastName}</p>
+              </div>
+
+              <div>
+                <p className='text-xs inline border border-primary px-2 rounded-full'>
+                  {item.payment ? 'CANCEL' : 'CASH'}
+                </p>
+              </div>
+
+              <p className='max-sm:hidden'>{item.userData.age}</p>
+              <p>
+                {item.slotDate}, {item.slotTime}
+              </p>
+              <p>{item.amount}</p>
+
+              {item.cancelled ? (
+                <p className='text-red-400 text-xs font-medium'>Cancelled</p>
+              ) : item.isCompleted ? (
+                <p className='text-green-500 text-xs font-medium'>Completed</p>
+              ) : (
+                <div className='flex'>
+                  <FaTimes
+                    onClick={() => cancelAppointment(item._id)}
+                    className='w-10 cursor-pointer text-red-500'
+                  />
+                  <FaCheck
+                    onClick={() => completeAppointment(item._id)}
+                    className='w-10 cursor-pointer text-green-500'
+                  />
+                </div>
+              )}
+            </div>
+          ))
+        )}
       </div>
     </div>
   );
