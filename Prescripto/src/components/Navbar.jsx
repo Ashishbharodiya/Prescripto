@@ -61,15 +61,22 @@ const Navbar = () => {
     };
     
     return (
-       <div className="flex items-center justify-between text-sm py-1 bg-gray-900 dark:bg-gray-800 border-b border-b-[#ADADAD] border-w-[6000px]">
-    <div className="flex items-center justify-between ">
-        <img className="cursor-pointer w-[90px] sm:w-[100px] md:w-[110px] lg:w-[120px] xl:w-[130px] 2xl:w-[140px]" src={logo} alt="Logo" />
-        <p className='border px-2.5 py-0.5 rounded-full border-gray-500 text-white text-xs sm:text-sm md:text-base lg:text-lg'>
+      <div className="flex items-center justify-between text-sm py-1 bg-gray-900 dark:bg-gray-800 border-b border-b-[#ADADAD] border-w-[6000px]">
+    <div className="flex items-center justify-between w-full">
+        {/* Logo */}
+        <img 
+            className="cursor-pointer w-[90px] sm:w-[100px] md:w-[110px] lg:w-[120px] xl:w-[130px] 2xl:w-[140px] ml-4" 
+            src={logo} 
+            alt="Logo" 
+        />
+        
+        {/* User Badge */}
+        <p className="border px-2.5 py-0.5 rounded-full border-gray-500 text-white text-xs sm:text-sm md:text-base lg:text-lg mx-2">
             User
         </p>
     </div>
 
-    <div className="relative inline-block text-left md:ps-14 lg:ps-16 xl:ps-18 2xl:ps-20">
+    <div className="relative inline-block text-left md:ps-14 lg:ps-16 xl:ps-18 2xl:ps-20 mr-4">
         <div>
             <button
                 onClick={toggleMenu}
@@ -78,6 +85,7 @@ const Navbar = () => {
                 aria-expanded={isMenuOpen}
                 aria-haspopup="true"
             >
+                {/* Profile Image */}
                 <img
                     src={`https://prescripto-66h4.onrender.com${state.userDetail?.GetUserDetail?.[0]?.image}`}
                     alt="User Profile"
@@ -86,6 +94,7 @@ const Navbar = () => {
             </button>
         </div>
 
+        {/* Dropdown Menu */}
         {isMenuOpen && (
             <div
                 className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-gray-900 dark:bg-gray-800 shadow-lg ring-1 ring-black/5 focus:outline-none"
