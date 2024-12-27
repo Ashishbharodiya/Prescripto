@@ -9,6 +9,7 @@ function Doctors() {
   const [filterDoc, setFilterDoc] = useState([]); 
   const [showFilter, setShowFilter] = useState(false);
   const [specialization, setSpecialization] = useState('');
+  const [loading, setLoading] = useState(false);  // State for loading
   const navigate = useNavigate();
 
   const token = { headers: { Authorization: `Bearer ${cookies?.token}` } };
@@ -19,6 +20,7 @@ function Doctors() {
       return;
     }
 
+    setLoading(true);  // Set loading to true when request starts
     try {
       Swal.fire({
         title: 'Loading doctors...',
@@ -39,6 +41,8 @@ function Doctors() {
     } catch (error) {
       Swal.close(); 
       Swal.fire('Error', 'There was a problem fetching doctors. Please try again.', 'error');
+    } finally {
+      setLoading(false);  // Set loading to false after the request completes
     }
   };
 
@@ -92,28 +96,34 @@ function Doctors() {
         </div>
 
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filterDoctorsBySpecialization().map((item, index) => (
-            <div
-              onClick={() => handleAppointmentBooking(item._id)}  
-              className="border border-[#4B4B4B] rounded-xl overflow-hidden cursor-pointer transform hover:scale-105 transition-all duration-500"
-              key={index}
-            >
-             <img
-                 className="w-full h-56 object-cover bg-[#2C2C2C]"
-                 src={item.image ? `https://prescripto-66h4.onrender.com${item.image}` : '/path/to/fallback-image.jpg'}
-                 alt={item.name}
-                 />
-              <div className="p-4">
-                <div className={`flex items-center gap-2 text-sm text-center ${item.available ? 'text-green-500' : 'text-gray-400'}`}>
-                  <p className={`w-2 h-2 rounded-full ${item.available ? 'bg-green-500' : 'bg-gray-500'}`}></p>
-                  <p>{item.available ? 'Available' : 'Not Available'}</p>
-                </div>
-
-                <p className="text-lg font-medium">{item.name}</p>
-                <p className="text-sm text-gray-400">{item.specialization}</p>
-              </div>
+          {loading ? (
+            <div className="w-full text-center">
+              <div className="w-20 h-20 border-4 border-gray-300 border-t-4 border-t-primary rounded-full animate-spin mx-auto"></div>
             </div>
-          ))}
+          ) : (
+            filterDoctorsBySpecialization().map((item, index) => (
+              <div
+                onClick={() => handleAppointmentBooking(item._id)}  
+                className="border border-[#4B4B4B] rounded-xl overflow-hidden cursor-pointer transform hover:scale-105 transition-all duration-500"
+                key={index}
+              >
+                <img
+                  className="w-full h-56 object-cover bg-[#2C2C2C]"
+                  src={item.image ? `https://prescripto-66h4.onrender.com${item.image}` : '/path/to/fallback-image.jpg'}
+                  alt={item.name}
+                />
+                <div className="p-4">
+                  <div className={`flex items-center gap-2 text-sm text-center ${item.available ? 'text-green-500' : 'text-gray-400'}`}>
+                    <p className={`w-2 h-2 rounded-full ${item.available ? 'bg-green-500' : 'bg-gray-500'}`}></p>
+                    <p>{item.available ? 'Available' : 'Not Available'}</p>
+                  </div>
+
+                  <p className="text-lg font-medium">{item.name}</p>
+                  <p className="text-sm text-gray-400">{item.specialization}</p>
+                </div>
+              </div>
+            ))
+          )}
         </div>
       </div>
     </div>
