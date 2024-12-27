@@ -89,63 +89,69 @@ function ADashboard() {
   }, [cookies?.Atoken]); 
 
   return dashData && (
-    <div className='min-h-screen w-[1200px] bg-gray-900 text-white'>
-      <div className='p-4'>
-        <div className='flex flex-wrap gap-3'>
-          
-          <div className='flex items-center gap-2 bg-gray-800 p-4 min-w-52 rounded border-2 border-gray-700 cursor-pointer hover:bg-gray-700 hover:scale-105 hover:text-white transition-all'>
-            <AiOutlineUser className='w-16 text-white' />
-            <div>
-              <p className='text-xl font-semibold text-white'>{dashData.doctors}</p>
-              <p className='text-gray-400'>Doctors</p>
-            </div>
-          </div>
-
-          <div className='flex items-center gap-2 bg-gray-800 p-4 min-w-52 rounded border-2 border-gray-700 cursor-pointer hover:bg-gray-700 hover:scale-105 hover:text-white transition-all'>
-            <AiOutlineCalendar className='w-14 text-white' />
-            <div>
-              <p className='text-xl font-semibold text-white'>{dashData.appointments}</p>
-              <p className='text-gray-400'>Appointments</p>
-            </div>
-          </div>
-
-          <div className='flex items-center gap-2 bg-gray-800 p-4 min-w-52 rounded border-2 border-gray-700 cursor-pointer hover:bg-gray-700 hover:scale-105 hover:text-white transition-all'>
-            <FaRegHospital className='w-14 text-white' />
-            <div>
-              <p className='text-xl font-semibold text-white'>{dashData.patients}</p>
-              <p className='text-gray-400'>Patients</p>
-            </div>
-          </div>
-
+       <div className='min-h-screen w-full sm:w-[90%] md:w-[80%] lg:w-[1200px] bg-gray-900 text-white'>
+  <div className='p-4'>
+    {/* Card section */}
+    <div className='flex flex-wrap gap-3 justify-center sm:justify-start'>
+      
+      {/* Doctors Card */}
+      <div className='flex items-center gap-2 bg-gray-800 p-4 min-w-[180px] sm:min-w-[200px] md:min-w-[220px] lg:min-w-52 rounded border-2 border-gray-700 cursor-pointer hover:bg-gray-700 hover:scale-105 hover:text-white transition-all'>
+        <AiOutlineUser className='w-16 text-white' />
+        <div>
+          <p className='text-xl font-semibold text-white'>{dashData.doctors}</p>
+          <p className='text-gray-400'>Doctors</p>
         </div>
+      </div>
 
-        <div className='bg-gray-800'>
-          <div className='flex items-center gap-2.5 px-4 py-4 mt-10 rounded-t border border-gray-700'>
-            <AiOutlineCalendar className='text-white' />
-            <p className='font-semibold text-white'>Latest Bookings</p>
-          </div>
-
-          <div className='pt-4 border border-t-0 border-gray-700'>
-            {dashData.latestAppointments.slice(0, 5).map((item, index) => (
-              <div className='flex items-center px-6 py-3 gap-3 hover:bg-gray-700' key={index}>
-                <img className='rounded-full w-14' src={`https://prescripto-66h4.onrender.com${item.docData.image}`} alt="" />
-                <div className='flex-1 text-sm'>
-                  <p className='text-white font-medium'>{item.docData.name}</p>
-                  <p className='text-gray-400'>Booking on {item.slotDate}</p>
-                </div>
-                {item.cancelled ? 
-                  <p className='text-red-400 text-xs font-medium'>Cancelled</p> : 
-                  item.isCompleted ? 
-                  <p className='text-green-500 text-xs font-medium'>Completed</p> : 
-                  <MdCancel onClick={() => cancelAppointment(item._id)} className='w-10 cursor-pointer text-white' />
-                }
-              </div>
-            ))}
-          </div>
+      {/* Appointments Card */}
+      <div className='flex items-center gap-2 bg-gray-800 p-4 min-w-[180px] sm:min-w-[200px] md:min-w-[220px] lg:min-w-52 rounded border-2 border-gray-700 cursor-pointer hover:bg-gray-700 hover:scale-105 hover:text-white transition-all'>
+        <AiOutlineCalendar className='w-14 text-white' />
+        <div>
+          <p className='text-xl font-semibold text-white'>{dashData.appointments}</p>
+          <p className='text-gray-400'>Appointments</p>
         </div>
+      </div>
 
+      {/* Patients Card */}
+      <div className='flex items-center gap-2 bg-gray-800 p-4 min-w-[180px] sm:min-w-[200px] md:min-w-[220px] lg:min-w-52 rounded border-2 border-gray-700 cursor-pointer hover:bg-gray-700 hover:scale-105 hover:text-white transition-all'>
+        <FaRegHospital className='w-14 text-white' />
+        <div>
+          <p className='text-xl font-semibold text-white'>{dashData.patients}</p>
+          <p className='text-gray-400'>Patients</p>
+        </div>
+      </div>
+
+    </div>
+
+    {/* Latest Bookings Section */}
+    <div className='bg-gray-800 mt-10'>
+      <div className='flex items-center gap-2.5 px-4 py-4 rounded-t border border-gray-700'>
+        <AiOutlineCalendar className='text-white' />
+        <p className='font-semibold text-white'>Latest Bookings</p>
+      </div>
+
+      <div className='pt-4 border border-t-0 border-gray-700'>
+        {dashData.latestAppointments.slice(0, 5).map((item, index) => (
+          <div className='flex items-center px-6 py-3 gap-3 hover:bg-gray-700' key={index}>
+            <img className='rounded-full w-14' src={`https://prescripto-66h4.onrender.com${item.docData.image}`} alt="" />
+            <div className='flex-1 text-sm'>
+              <p className='text-white font-medium'>{item.docData.name}</p>
+              <p className='text-gray-400'>Booking on {item.slotDate}</p>
+            </div>
+            {item.cancelled ? 
+              <p className='text-red-400 text-xs font-medium'>Cancelled</p> : 
+              item.isCompleted ? 
+              <p className='text-green-500 text-xs font-medium'>Completed</p> : 
+              <MdCancel onClick={() => cancelAppointment(item._id)} className='w-10 cursor-pointer text-white' />
+            }
+          </div>
+        ))}
       </div>
     </div>
+
+  </div>
+</div>
+
   );
 }
 
