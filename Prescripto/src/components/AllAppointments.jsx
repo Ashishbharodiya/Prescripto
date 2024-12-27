@@ -10,8 +10,10 @@ function AllAppointments() {
     const Atoken = { headers: { Authorization: `Bearer ${cookies?.Atoken}` } };
 
     const [appointments, setAppointments] = useState([]);
+    const [loading, setLoading] = useState(false); // State to track loading status
 
     const getAllAppointments = async () => {
+        setLoading(true); // Start loading
         try {
             const response = await axios.get('https://prescripto-66h4.onrender.com/api/admin/appointments', Atoken);
             if (response.data.success) {
@@ -21,6 +23,8 @@ function AllAppointments() {
             }
         } catch (error) {
             console.log('Error fetching appointments: ', error);
+        } finally {
+            setLoading(false); // End loading
         }
     };
 
@@ -32,13 +36,16 @@ function AllAppointments() {
             showCancelButton: true,
             confirmButtonText: 'Yes, cancel it!',
             cancelButtonText: 'No, keep it',
-            reverseButtons: true
+            reverseButtons: true,
+            didOpen: () => {
+                Swal.showLoading(); // Show loading icon in Swal during cancellation
+            }
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
                     const response = await axios.post('https://prescripto-66h4.onrender.com/api/admin/cancel-appointment', { appointmentId }, Atoken);
                     if (response.data.success) {
-                        getAllAppointments();
+                        getAllAppointments(); // Reload appointments after cancellation
                         Swal.fire('Cancelled!', 'The appointment has been cancelled.', 'success');
                     } else {
                         Swal.fire('Error!', 'Something went wrong, please try again.', 'error');
@@ -68,32 +75,42 @@ function AllAppointments() {
                 <p className='text-white'>Fees</p>
                 <p className='text-white'>Action</p>
             </div>
-            {appointments.map((item, index) => (
-                <div className='flex flex-wrap justify-between max-sm:gap-2 sm:grid sm:grid-cols-[0.5fr_3.5fr_1fr_3fr_4fr_1fr_1fr] items-center text-gray-300 py-3 px-7 border-b border-gray-700 hover:bg-gray-800 bg-gray-900' key={index}>
-                    <p className='max-sm:hidden text-white'>{index + 1}</p>
-                    <div className='flex items-center gap-2'>
-                        <img src={`https://prescripto-66h4.onrender.com${item.userData.image}`} className='w-8 rounded-full' alt="" />
-                        <p className='text-white'>{item.userData.userName}</p>
-                        <p className='text-white'>{item.userData.firstName}</p>
-                        <p className='text-white'>{item.userData.lastName}</p>
+            {loading ? (
+                <div className="text-center text-white py-6">Loading appointments...</div> // Loading state display
+            ) : (
+                appointments.map((item, index) => (
+                    <div className='flex flex-wrap justify-between max-sm:gap-2 sm:grid sm:grid-cols-[0.5fr_3.5fr_1fr_3fr_4fr_1fr_1fr] items-center text-gray-300 py-3 px-7 border-b border-gray-700 hover:bg-gray-800 bg-gray-900' key={index}>
+                        <p className='max-sm:hidden text-white'>{index + 1}</p>
+                        <div className='flex items-center gap-2'>
+                            <img src={`https://prescripto-66h4.onrender.com${item.userData.image}`} className='w-8 rounded-full' alt="" />
+                            <p className='text-white'>{item.userData.userName}</p>
+                            <p className='text-white'>{item.userData.firstName}</p>
+                            <p className='text-white'>{item.userData.lastName}</p>
+                        </div>
+                        <p className='max-sm:hidden text-white'>{item.userData.age}</p>
+                        <p className='text-white'>{item.slotDate}, {item.slotTime}</p>
+                        <div className='flex items-center gap-2'>
+                            <img src={`https://prescripto-66h4.onrender.com${item.docData.image}`} className='w-8 rounded-full bg-gray-600' alt="" />
+                            <p className='text-white'>{item.docData.name}</p>
+                        </div>
+                        <p className='text-white'>${item.amount}</p>
+                        {item.cancelled ? 
+                            <p className='text-red-400 text-xs font-medium'>Cancelled</p> : 
+                            item.isCompleted ? 
+                            <p className='text-green-500 text-xs font-medium'>Completed</p> : 
+                            <>
+                                <img 
+                                    onClick={() => cancelAppointment(item._id)} 
+                                    className='w-4 cursor-pointer' 
+                                    src={icons} 
+                                    alt="Cancel Appointment" 
+                                    disabled={loading} // Disable the button while loading
+                                />
+                            </>
+                        }
                     </div>
-                    <p className='max-sm:hidden text-white'>{item.userData.age}</p>
-                    <p className='text-white'>{item.slotDate}, {item.slotTime}</p>
-                    <div className='flex items-center gap-2'>
-                        <img src={`https://prescripto-66h4.onrender.com${item.docData.image}`} className='w-8 rounded-full bg-gray-600' alt="" />
-                        <p className='text-white'>{item.docData.name}</p>
-                    </div>
-                    <p className='text-white'>${item.amount}</p>
-                    {item.cancelled ? 
-                        <p className='text-red-400 text-xs font-medium'>Cancelled</p> : 
-                        item.isCompleted ? 
-                        <p className='text-green-500 text-xs font-medium'>Completed</p> : 
-                        <>
-                            <img onClick={() => cancelAppointment(item._id)} className='w-4 cursor-pointer' src={icons} alt="Cancel Appointment" />
-                        </>
-                    }
-                </div>
-            ))}
+                ))
+            )}
         </div>
     );
 }
