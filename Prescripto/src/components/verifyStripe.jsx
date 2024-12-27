@@ -17,7 +17,7 @@ function verifyStripe() {
 
             try {
     
-                const response = await axios.get('https://prescripto-3-ry9r.onrender.com/api/user/verifyStripe', { success, appointmentId }, token);
+                const response = await axios.get('https://prescripto-66h4.onrender.com/api/user/verifyStripe', { success, appointmentId }, token);
 
                 if (response.data.success) {
                     console.log(response.data.doctors);
