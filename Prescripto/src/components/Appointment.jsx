@@ -15,7 +15,8 @@ function Appointment() {
     const [docSlots, setDocSlots] = useState([]);
     const [slotIndex, setSlotIndex] = useState(0);
     const [slotTime, setSlotTime] = useState('');
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false); // Loading state for fetching and booking
+    const [isBooking, setIsBooking] = useState(false); // Is booking state
 
     const navigate = useNavigate();
 
@@ -59,6 +60,7 @@ function Appointment() {
 
     useEffect(() => {
         if (doctors.length === 0) {
+            setLoading(true); // Set loading to true while fetching doctors
             getAllDoctors();
         }
     }, [doctors]);
@@ -126,6 +128,7 @@ function Appointment() {
 
     useEffect(() => {
         if (docInfo) {
+            setLoading(true); // Set loading true while fetching available slots
             getAvailable();
         }
     }, [docInfo]);
@@ -153,7 +156,7 @@ function Appointment() {
         const slotDate = `${day < 10 ? '0' : ''}${day}-${month < 10 ? '0' : ''}${month}-${year}`;
 
         try {
-            setLoading(true);
+            setIsBooking(true); // Set booking state to true
             const response = await axios.post(
                 'https://prescripto-66h4.onrender.com/api/user/book-appointment',
                 {
@@ -193,7 +196,7 @@ function Appointment() {
                 confirmButtonText: 'OK'
             });
         } finally {
-            setLoading(false);
+            setIsBooking(false); // Reset booking state after booking attempt
         }
     };
 
@@ -270,9 +273,9 @@ function Appointment() {
                 <button
                   onClick={bookAppointment}
                   className="bg-primary text-white px-6 py-2 rounded-lg transition-all transform hover:scale-110 disabled:bg-gray-600"
-                  disabled={!slotTime || loading}
+                  disabled={!slotTime || isBooking}
                 >
-                  {loading ? 'Booking...' : 'Book Appointment'}
+                  {isBooking ? 'Booking...' : 'Book Appointment'}
                 </button>
               </div>
             </div>
