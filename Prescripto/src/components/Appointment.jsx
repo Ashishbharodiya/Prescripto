@@ -21,7 +21,7 @@ function Appointment() {
 
     const getAllDoctors = async () => {
         try {
-            const response = await axios.get('https://prescripto-3-ry9r.onrender.com/api/user/all-doctors', token);
+            const response = await axios.get('https://prescripto-66h4.onrender.com/api/user/all-doctors', token);
             if (response.data.success) {
                 setDoctors(response.data.doctors);
             } else {
@@ -155,7 +155,7 @@ function Appointment() {
         try {
             setLoading(true);
             const response = await axios.post(
-                'https://prescripto-3-ry9r.onrender.com/api/user/book-appointment',
+                'https://prescripto-66h4.onrender.com/api/user/book-appointment',
                 {
                     docId,
                     slotDate,
@@ -205,7 +205,7 @@ function Appointment() {
                   <div>
                     <img
                       className="w-full sm:max-w-72 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl"
-                      src={docInfo.image ? `https://prescripto-3-ry9r.onrender.com${docInfo.image}` : '/path/to/fallback-image.jpg'}
+                      src={docInfo.image ? `https://prescripto-66h4.onrender.com${docInfo.image}` : '/path/to/fallback-image.jpg'}
                       alt={`${docInfo.name}'s photo`}
                     />
                   </div>
