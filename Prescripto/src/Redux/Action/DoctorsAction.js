@@ -3,7 +3,7 @@ import { GETDOCTORSDETAL } from "../Type/type";
 
 export const DoctorDetailAction = (Atoken) => {
     return (dispatch) => {
-        axios.get("https://prescripto-3-ry9r.onrender.com/api/admin/all-doctors", {
+        axios.get("https://prescripto-66h4.onrender.com/api/admin/all-doctors", {
             headers: { Authorization: `Bearer ${Atoken}` }
         }).then((res) => {
             console.log(res.data);
