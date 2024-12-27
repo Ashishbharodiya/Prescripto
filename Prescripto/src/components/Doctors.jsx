@@ -28,7 +28,7 @@ function Doctors() {
         }
       });
 
-      const response = await axios.get('https://prescripto-3-ry9r.onrender.com/api/user/all-doctors', token);
+      const response = await axios.get('https://prescripto-66h4.onrender.com/api/user/all-doctors', token);
 
       if (response.data.success) {
         setFilterDoc(response.data.doctors);
@@ -99,10 +99,10 @@ function Doctors() {
               key={index}
             >
              <img
-  className="w-full h-56 object-cover bg-[#2C2C2C]"
-  src={item.image ? `https://prescripto-3-ry9r.onrender.com${item.image}` : '/path/to/fallback-image.jpg'}
-  alt={item.name}
-/>
+                 className="w-full h-56 object-cover bg-[#2C2C2C]"
+                 src={item.image ? `https://prescripto-66h4.onrender.com${item.image}` : '/path/to/fallback-image.jpg'}
+                 alt={item.name}
+                 />
               <div className="p-4">
                 <div className={`flex items-center gap-2 text-sm text-center ${item.available ? 'text-green-500' : 'text-gray-400'}`}>
                   <p className={`w-2 h-2 rounded-full ${item.available ? 'bg-green-500' : 'bg-gray-500'}`}></p>
