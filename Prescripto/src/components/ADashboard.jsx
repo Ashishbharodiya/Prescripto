@@ -22,7 +22,7 @@ function ADashboard() {
 
   const getDashData = async () => {
     try {
-      const response = await axios.get('https://prescripto-3-ry9r.onrender.com/api/admin/dashboard', Atoken);
+      const response = await axios.get('https://prescripto-66h4.onrender.com/api/admin/dashboard', Atoken);
       if (response.data.success) {
         setDashData(response.data.dashData);
       } else {
@@ -35,7 +35,7 @@ function ADashboard() {
 
   const getAllAppointments = async () => {
     try {
-      const response = await axios.get('https://prescripto-3-ry9r.onrender.com/api/admin/appointments', Atoken);
+      const response = await axios.get('https://prescripto-66h4.onrender.com/api/admin/appointments', Atoken);
       if (response.data.success) {
         setAppointments(response.data.appointments.reverse())
       } else {
@@ -65,7 +65,7 @@ function ADashboard() {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const response = await axios.post('https://prescripto-3-ry9r.onrender.com/api/admin/cancel-appointment', { id: appointmentId }, Atoken);
+          const response = await axios.post('https://prescripto-66h4.onrender.com/api/admin/cancel-appointment', { id: appointmentId }, Atoken);
           
           if (response.data.success) {
             getAllAppointments();
@@ -128,7 +128,7 @@ function ADashboard() {
           <div className='pt-4 border border-t-0 border-gray-700'>
             {dashData.latestAppointments.slice(0, 5).map((item, index) => (
               <div className='flex items-center px-6 py-3 gap-3 hover:bg-gray-700' key={index}>
-                <img className='rounded-full w-14' src={`https://prescripto-3-ry9r.onrender.com${item.docData.image}`} alt="" />
+                <img className='rounded-full w-14' src={`https://prescripto-66h4.onrender.com${item.docData.image}`} alt="" />
                 <div className='flex-1 text-sm'>
                   <p className='text-white font-medium'>{item.docData.name}</p>
                   <p className='text-gray-400'>Booking on {item.slotDate}</p>
