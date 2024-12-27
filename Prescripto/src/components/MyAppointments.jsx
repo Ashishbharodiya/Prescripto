@@ -10,8 +10,19 @@ function MyAppointments() {
   const [doctors, setDoctors] = useState([]);
   const [appointments, setAppointments] = useState([]);
   const [payment, setPayment] = useState('');
+  const [loading, setLoading] = useState(false);  // Add loading state
 
   const getUserAppointments = async () => {
+    setLoading(true);  // Set loading to true
+    Swal.fire({
+      title: 'Loading...',
+      text: 'Fetching your appointments.',
+      didOpen: () => {
+        Swal.showLoading();  // Show loading spinner
+      },
+      allowOutsideClick: false, // Prevent closing during loading
+    });
+
     try {
       const response = await axios.get('https://prescripto-66h4.onrender.com/api/user/appointments', token);
 
@@ -41,10 +52,23 @@ function MyAppointments() {
         icon: 'error',
         confirmButtonText: 'Try Again',
       });
+    } finally {
+      setLoading(false);  // Set loading to false after API call
+      Swal.close();  // Close the SweetAlert loading spinner
     }
   };
 
   const getAllDoctors = async () => {
+    setLoading(true);
+    Swal.fire({
+      title: 'Loading...',
+      text: 'Fetching doctor details.',
+      didOpen: () => {
+        Swal.showLoading();
+      },
+      allowOutsideClick: false,
+    });
+
     try {
       const response = await axios.get('https://prescripto-66h4.onrender.com/api/user/all-doctors', token);
       if (response.data.success) {
@@ -64,10 +88,23 @@ function MyAppointments() {
         icon: 'error',
         confirmButtonText: 'Try Again',
       });
+    } finally {
+      setLoading(false);
+      Swal.close();
     }
   };
 
   const cancelAppointment = async (appointmentId) => {
+    setLoading(true);
+    Swal.fire({
+      title: 'Processing...',
+      text: 'Cancelling your appointment.',
+      didOpen: () => {
+        Swal.showLoading();
+      },
+      allowOutsideClick: false,
+    });
+
     try {
       const response = await axios.post('https://prescripto-66h4.onrender.com/api/user/cancel-appointment', { appointmentId }, token);
 
@@ -95,10 +132,23 @@ function MyAppointments() {
         icon: 'error',
         confirmButtonText: 'Try Again',
       });
+    } finally {
+      setLoading(false);
+      Swal.close();
     }
   };
 
   const paidAppointment = async (appointmentId) => {
+    setLoading(true);
+    Swal.fire({
+      title: 'Processing...',
+      text: 'Making payment for your appointment.',
+      didOpen: () => {
+        Swal.showLoading();
+      },
+      allowOutsideClick: false,
+    });
+
     try {
       const response = await axios.post('https://prescripto-66h4.onrender.com/api/user/cash-payment', { appointmentId }, token);
 
@@ -126,6 +176,9 @@ function MyAppointments() {
         icon: 'error',
         confirmButtonText: 'Try Again',
       });
+    } finally {
+      setLoading(false);
+      Swal.close();
     }
   };
 
@@ -168,8 +221,9 @@ function MyAppointments() {
                   <button
                     onClick={() => paidAppointment(appointment._id)}
                     className='text-[#A5A5A5] sm:min-w-48 py-2 border border-green-500 rounded hover:bg-green-500 hover:text-white transition-all duration-300'
+                    disabled={loading}  // Disable button while loading
                   >
-                    Pay
+                    {loading ? 'Processing...' : 'Pay'}
                   </button>
                 }
 
@@ -183,8 +237,9 @@ function MyAppointments() {
                   <button
                     onClick={() => cancelAppointment(appointment._id)}
                     className='text-[#A5A5A5] sm:min-w-48 py-2 border border-[#B34D4D] rounded hover:bg-[#B34D4D] hover:text-white transition-all duration-300'
+                    disabled={loading}  // Disable button while loading
                   >
-                    Cancel Appointment
+                    {loading ? 'Cancelling...' : 'Cancel Appointment'}
                   </button>
                 }
 
