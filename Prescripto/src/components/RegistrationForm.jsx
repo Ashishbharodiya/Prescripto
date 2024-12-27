@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import Swal from 'sweetalert2'; 
+import Swal from 'sweetalert2';
 
 function RegistrationForm() {
   const [obj, setObj] = useState({
@@ -18,7 +18,9 @@ function RegistrationForm() {
     address: '',
     userImage: null,
   });
+
   const [blank, setBlank] = useState({});
+  const [loading, setLoading] = useState(false); // Added loading state
   const navigate = useNavigate();
 
   const SignupData = (e) => {
@@ -34,7 +36,24 @@ function RegistrationForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setBlank({});
-    
+
+    // Validation: check if passwords match
+    if (obj.password !== obj.confirmpassword) {
+      toast.error('Passwords do not match');
+      return;
+    }
+
+    // Show loading spinner in SweetAlert before making API call
+    Swal.fire({
+      title: 'Registering...',
+      text: 'Please wait while we process your registration.',
+      didOpen: () => {
+        Swal.showLoading();
+      },
+      allowOutsideClick: false, // Prevent closing the modal
+      showConfirmButton: false, // Hide confirm button while loading
+    });
+
     const formDataToSubmit = new FormData();
     formDataToSubmit.append('userName', obj.userName);
     formDataToSubmit.append('firstName', obj.firstName);
@@ -49,6 +68,7 @@ function RegistrationForm() {
     formDataToSubmit.append('image', obj.userImage);
 
     try {
+      setLoading(true); // Set loading to true when starting the registration process
       const response = await axios.post('https://prescripto-66h4.onrender.com/api/user/registration', formDataToSubmit, {
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -58,6 +78,7 @@ function RegistrationForm() {
       console.log('Registration successful:', response.data);
       toast.success(response.data.message);
 
+      // Close the loading modal and show success message
       Swal.fire({
         title: 'Success!',
         text: response.data.message,
@@ -67,6 +88,7 @@ function RegistrationForm() {
 
       navigate(`/Login`);
       
+      // Reset the form after successful registration
       setObj({
         userName: '',
         firstName: '',
@@ -87,12 +109,15 @@ function RegistrationForm() {
       const errorMessage = error.response?.data?.message || 'Something went wrong!';
       toast.error(errorMessage);
 
+      // Close the loading modal and show error message
       Swal.fire({
         title: 'Error!',
         text: errorMessage,
         icon: 'error',
         confirmButtonColor: '#f44336',
       });
+    } finally {
+      setLoading(false); // Reset loading state after request completes
     }
   };
 
@@ -260,8 +285,9 @@ function RegistrationForm() {
             <button
               type="submit"
               className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-200"
+              disabled={loading} // Disable button while loading
             >
-              Register
+              {loading ? 'Registering...' : 'Register'} {/* Change button text based on loading state */}
             </button>
           </div>
         </form>
