@@ -72,7 +72,7 @@ function Doctors() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 w-[1200px] text-white flex flex-col items-center p-6">
+    <div className="min-h-screen bg-gray-900  text-white flex flex-col items-center w-full h-full p-6">
       <p className="text-gray-300">Browse through the doctors' specialists.</p>
 
       <div className="flex flex-col sm:flex-row items-start gap-5 mt-5 w-full">
