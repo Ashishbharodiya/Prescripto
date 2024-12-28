@@ -51,7 +51,7 @@ function ARegistrationForm() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-gray-900 flex items-center justify-center">
+    <div className="min-h-screen w-full bg-gray-900 flex items-center justify-center w-full h-full">
       <div className="w-full sm:w-[95%] md:w-[80%] lg:w-[600px] xl:w-[700px] 2xl:w-[800px] p-6 shadow-lg rounded-lg bg-gray-800">
         <h2 className="text-2xl font-semibold text-center mb-6 text-white">
           Admin Your Account
