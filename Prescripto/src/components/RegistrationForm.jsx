@@ -3,24 +3,14 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
+import { FaUser, FaEnvelope, FaPhone, FaMale, FaFemale, FaUserCircle, FaKey, FaBirthdayCake } from 'react-icons/fa';
+import { MdLocationOn } from 'react-icons/md';
+import { GiConfirmed } from 'react-icons/gi';
 
 function RegistrationForm() {
-  const [obj, setObj] = useState({
-    userName: '',
-    firstName: '',
-    lastName: '',
-    email: '',
-    phoneNumber: '',
-    gender: '',
-    password: '',
-    confirmpassword: '',
-    age: '',
-    address: '',
-    userImage: null,
-  });
-
+  const [obj, setObj] = useState({});
   const [blank, setBlank] = useState({});
-  const [loading, setLoading] = useState(false); // Added loading state
+  const [loading, setLoading] = useState(false); 
   const navigate = useNavigate();
 
   const SignupData = (e) => {
@@ -37,21 +27,19 @@ function RegistrationForm() {
     e.preventDefault();
     setBlank({});
 
-    // Validation: check if passwords match
     if (obj.password !== obj.confirmpassword) {
       toast.error('Passwords do not match');
       return;
     }
 
-    // Show loading spinner in SweetAlert before making API call
     Swal.fire({
       title: 'Registering...',
       text: 'Please wait while we process your registration.',
       didOpen: () => {
         Swal.showLoading();
       },
-      allowOutsideClick: false, // Prevent closing the modal
-      showConfirmButton: false, // Hide confirm button while loading
+      allowOutsideClick: false,
+      showConfirmButton: false,
     });
 
     const formDataToSubmit = new FormData();
@@ -68,7 +56,7 @@ function RegistrationForm() {
     formDataToSubmit.append('image', obj.userImage);
 
     try {
-      setLoading(true); // Set loading to true when starting the registration process
+      setLoading(true); 
       const response = await axios.post('https://prescripto-66h4.onrender.com/api/user/registration', formDataToSubmit, {
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -78,7 +66,6 @@ function RegistrationForm() {
       console.log('Registration successful:', response.data);
       toast.success(response.data.message);
 
-      // Close the loading modal and show success message
       Swal.fire({
         title: 'Success!',
         text: response.data.message,
@@ -88,7 +75,6 @@ function RegistrationForm() {
 
       navigate(`/Login`);
       
-      // Reset the form after successful registration
       setObj({
         userName: '',
         firstName: '',
@@ -109,7 +95,6 @@ function RegistrationForm() {
       const errorMessage = error.response?.data?.message || 'Something went wrong!';
       toast.error(errorMessage);
 
-      // Close the loading modal and show error message
       Swal.fire({
         title: 'Error!',
         text: errorMessage,
@@ -117,7 +102,7 @@ function RegistrationForm() {
         confirmButtonColor: '#f44336',
       });
     } finally {
-      setLoading(false); // Reset loading state after request completes
+      setLoading(false); 
     }
   };
 
@@ -127,7 +112,9 @@ function RegistrationForm() {
         <h2 className="text-2xl font-semibold text-center mb-6 text-white">Create Your Account</h2>
         <form onSubmit={handleSubmit} autoComplete="off">
           <div className="mb-4">
-            <label htmlFor="userName" className="block text-sm font-medium text-gray-300">Username:</label>
+            <label htmlFor="userName" className="block text-sm font-medium text-gray-300">
+              <FaUser className="inline mr-2 text-blue-500" /> Username:
+            </label>
             <input
               type="text"
               name="userName"
@@ -141,7 +128,9 @@ function RegistrationForm() {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="firstName" className="block text-sm font-medium text-gray-300">First Name:</label>
+            <label htmlFor="firstName" className="block text-sm font-medium text-gray-300">
+              <FaUserCircle className="inline mr-2 text-blue-500" /> First Name:
+            </label>
             <input
               type="text"
               name="firstName"
@@ -155,7 +144,9 @@ function RegistrationForm() {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="lastName" className="block text-sm font-medium text-gray-300">Last Name:</label>
+            <label htmlFor="lastName" className="block text-sm font-medium text-gray-300">
+              <FaUserCircle className="inline mr-2 text-blue-500" /> Last Name:
+            </label>
             <input
               type="text"
               name="lastName"
@@ -169,7 +160,9 @@ function RegistrationForm() {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-300">Email:</label>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-300">
+              <FaEnvelope className="inline mr-2 text-blue-500" /> Email:
+            </label>
             <input
               type="email"
               name="email"
@@ -183,7 +176,9 @@ function RegistrationForm() {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-300">Phone Number:</label>
+            <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-300">
+              <FaPhone className="inline mr-2 text-blue-500" /> Phone Number:
+            </label>
             <input
               type="text"
               name="phoneNumber"
@@ -197,7 +192,9 @@ function RegistrationForm() {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="gender" className="block text-sm font-medium text-gray-300">Gender:</label>
+            <label htmlFor="gender" className="block text-sm font-medium text-gray-300">
+              <GiConfirmed className="inline mr-2 text-blue-500" /> Gender:
+            </label>
             <select
               name="gender"
               id="gender"
@@ -214,7 +211,9 @@ function RegistrationForm() {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-300">Password:</label>
+            <label htmlFor="password" className="block text-sm font-medium text-gray-300">
+              <FaKey className="inline mr-2 text-blue-500" /> Password:
+            </label>
             <input
               type="password"
               name="password"
@@ -228,7 +227,9 @@ function RegistrationForm() {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="confirmpassword" className="block text-sm font-medium text-gray-300">Confirm Password:</label>
+            <label htmlFor="confirmpassword" className="block text-sm font-medium text-gray-300">
+              <FaKey className="inline mr-2 text-blue-500" /> Confirm Password:
+            </label>
             <input
               type="password"
               name="confirmpassword"
@@ -242,7 +243,9 @@ function RegistrationForm() {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="age" className="block text-sm font-medium text-gray-300">Age:</label>
+            <label htmlFor="age" className="block text-sm font-medium text-gray-300">
+              <FaBirthdayCake className="inline mr-2 text-blue-500" /> Age:
+            </label>
             <input
               type="number"
               name="age"
@@ -256,7 +259,9 @@ function RegistrationForm() {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="address" className="block text-sm font-medium text-gray-300">Address:</label>
+            <label htmlFor="address" className="block text-sm font-medium text-gray-300">
+              <MdLocationOn className="inline mr-2 text-blue-500" /> Address:
+            </label>
             <input
               type="text"
               name="address"
@@ -270,7 +275,9 @@ function RegistrationForm() {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="userImage" className="block text-sm font-medium text-gray-300">Profile Picture:</label>
+            <label htmlFor="userImage" className="block text-sm font-medium text-gray-300">
+              <FaUserCircle className="inline mr-2 text-blue-500" /> Profile Picture:
+            </label>
             <input
               type="file"
               name="userImage"
@@ -285,9 +292,9 @@ function RegistrationForm() {
             <button
               type="submit"
               className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-200"
-              disabled={loading} // Disable button while loading
+              disabled={loading}
             >
-              {loading ? 'Registering...' : 'Register'} {/* Change button text based on loading state */}
+              {loading ? 'Registering...' : 'Register'}
             </button>
           </div>
         </form>
