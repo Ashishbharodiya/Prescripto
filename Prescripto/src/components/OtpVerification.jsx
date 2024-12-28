@@ -25,13 +25,13 @@ const OtpVerification = () => {
       customClass: {
         popup: "bg-gray-800",
         title: "text-lg font-semibold text-white",
-        content: "text-white", 
-        confirmButton: "bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500", 
+        content: "text-white",
+        confirmButton: "bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500",
       },
     });
 
     try {
-      const response = await axios.post("https://prescripto-66h4.onrender.com/api/user/verify-otp", {
+      const response = await axios.post("https://prescripto-62tm.onrender.com/api/user/verify-otp", {
         id: id,
         otp: otp,
       });
@@ -59,7 +59,7 @@ const OtpVerification = () => {
           customClass: {
             popup: "bg-gray-800",
             title: "text-lg font-semibold text-white",
-            content: "text-white", 
+            content: "text-white",
             confirmButton: "bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500",
           },
         }).then(() => {
@@ -72,10 +72,10 @@ const OtpVerification = () => {
           icon: "error",
           confirmButtonText: "Try Again",
           customClass: {
-            popup: "bg-gray-800", 
+            popup: "bg-gray-800",
             title: "text-lg font-semibold text-white",
-            content: "text-white", 
-            confirmButton: "bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500", 
+            content: "text-white",
+            confirmButton: "bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500",
           },
         });
       }
@@ -92,12 +92,19 @@ const OtpVerification = () => {
         icon: "error",
         confirmButtonText: "OK",
         customClass: {
-          popup: "bg-gray-800", 
+          popup: "bg-gray-800",
           title: "text-lg font-semibold text-white",
-          content: "text-white", 
-          confirmButton: "bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500", 
+          content: "text-white",
+          confirmButton: "bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500",
         },
       });
+    }
+  };
+
+  const handleOtpChange = (e) => {
+    const value = e.target.value;
+    if (/^\d{0,6}$/.test(value)) {
+      setOtp(value);
     }
   };
 
@@ -107,13 +114,15 @@ const OtpVerification = () => {
         <h2 className="text-3xl font-bold text-center text-white mb-8">OTP Verification</h2>
         <form onSubmit={handleSubmit} autoComplete="off">
           <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-300">Enter OTP:</label>
+            <label className="block text-sm font-medium text-gray-300">Enter the 6-digit OTP:</label>
             <input
               type="text"
               value={otp}
-              onChange={(e) => setOtp(e.target.value)}
+              onChange={handleOtpChange}
+              maxLength="6"
               required
               className="mt-2 p-3 w-full border-2 border-gray-600 rounded-lg bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Enter OTP"
             />
           </div>
           <div>
