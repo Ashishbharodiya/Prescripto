@@ -70,7 +70,7 @@ function ALoginForm() {
     };
 
     return (
-        <div className="login-container flex items-center justify-center min-h-screen bg-gray-900">
+        <div className="login-container flex items-center justify-center min-h-screen bg-gray-900 w-full h-full">
             <div className="bg-gray-800 p-8 rounded-lg shadow-lg w-full sm:w-[95%] md:w-[80%] lg:w-[400px] xl:w-[450px] 2xl:w-[500px] z-10">
                 <h2 className="text-2xl font-bold text-center mb-6 text-white">Alogin</h2>
                 <form onSubmit={handleSubmit} autoComplete="off">
