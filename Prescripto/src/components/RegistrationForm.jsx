@@ -3,9 +3,6 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
-import { FaUser, FaEnvelope, FaPhone, FaMale, FaFemale, FaUserCircle, FaKey, FaBirthdayCake } from 'react-icons/fa';
-import { MdLocationOn } from 'react-icons/md';
-import { GiConfirmed } from 'react-icons/gi';
 
 function RegistrationForm() {
   const [obj, setObj] = useState({});
@@ -113,7 +110,7 @@ function RegistrationForm() {
         <form onSubmit={handleSubmit} autoComplete="off">
           <div className="mb-4">
             <label htmlFor="userName" className="block text-sm font-medium text-gray-300">
-              <FaUser className="inline mr-2 text-blue-500" /> Username:
+              Username:
             </label>
             <input
               type="text"
@@ -129,7 +126,7 @@ function RegistrationForm() {
 
           <div className="mb-4">
             <label htmlFor="firstName" className="block text-sm font-medium text-gray-300">
-              <FaUserCircle className="inline mr-2 text-blue-500" /> First Name:
+              First Name:
             </label>
             <input
               type="text"
@@ -145,7 +142,7 @@ function RegistrationForm() {
 
           <div className="mb-4">
             <label htmlFor="lastName" className="block text-sm font-medium text-gray-300">
-              <FaUserCircle className="inline mr-2 text-blue-500" /> Last Name:
+              Last Name:
             </label>
             <input
               type="text"
@@ -161,7 +158,7 @@ function RegistrationForm() {
 
           <div className="mb-4">
             <label htmlFor="email" className="block text-sm font-medium text-gray-300">
-              <FaEnvelope className="inline mr-2 text-blue-500" /> Email:
+              Email:
             </label>
             <input
               type="email"
@@ -177,7 +174,7 @@ function RegistrationForm() {
 
           <div className="mb-4">
             <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-300">
-              <FaPhone className="inline mr-2 text-blue-500" /> Phone Number:
+              Phone Number:
             </label>
             <input
               type="text"
@@ -193,7 +190,7 @@ function RegistrationForm() {
 
           <div className="mb-4">
             <label htmlFor="gender" className="block text-sm font-medium text-gray-300">
-              <GiConfirmed className="inline mr-2 text-blue-500" /> Gender:
+              Gender:
             </label>
             <select
               name="gender"
@@ -212,7 +209,7 @@ function RegistrationForm() {
 
           <div className="mb-4">
             <label htmlFor="password" className="block text-sm font-medium text-gray-300">
-              <FaKey className="inline mr-2 text-blue-500" /> Password:
+              Password:
             </label>
             <input
               type="password"
@@ -228,7 +225,7 @@ function RegistrationForm() {
 
           <div className="mb-4">
             <label htmlFor="confirmpassword" className="block text-sm font-medium text-gray-300">
-              <FaKey className="inline mr-2 text-blue-500" /> Confirm Password:
+              Confirm Password:
             </label>
             <input
               type="password"
@@ -244,7 +241,7 @@ function RegistrationForm() {
 
           <div className="mb-4">
             <label htmlFor="age" className="block text-sm font-medium text-gray-300">
-              <FaBirthdayCake className="inline mr-2 text-blue-500" /> Age:
+              Age:
             </label>
             <input
               type="number"
@@ -260,7 +257,7 @@ function RegistrationForm() {
 
           <div className="mb-4">
             <label htmlFor="address" className="block text-sm font-medium text-gray-300">
-              <MdLocationOn className="inline mr-2 text-blue-500" /> Address:
+              Address:
             </label>
             <input
               type="text"
@@ -276,7 +273,7 @@ function RegistrationForm() {
 
           <div className="mb-4">
             <label htmlFor="userImage" className="block text-sm font-medium text-gray-300">
-              <FaUserCircle className="inline mr-2 text-blue-500" /> Profile Picture:
+              Profile Picture:
             </label>
             <input
               type="file"
