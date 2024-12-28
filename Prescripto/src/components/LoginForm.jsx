@@ -1,21 +1,21 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';  
+import { useNavigate } from 'react-router-dom';
+import { FaUserAlt, FaLock, FaLaugh } from 'react-icons/fa';  
 
 function LoginForm() {
   const [Loginobj, setLoginobj] = useState({});
-  const [loading, setLoading] = useState(false);  // Track loading state
+  const [loading, setLoading] = useState(false); 
   const navigate = useNavigate();  
 
   const LoginData = (e) => {
-    setLoginobj({ ...Loginobj, [e.target.name]: e.target.value });  // Update state safely
+    setLoginobj({ ...Loginobj, [e.target.name]: e.target.value });  
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();  
 
-    // Show SweetAlert loading spinner
     setLoading(true);
     Swal.fire({
       title: 'Logging in...',
@@ -23,8 +23,8 @@ function LoginForm() {
       didOpen: () => {
         Swal.showLoading();
       },
-      allowOutsideClick: false,  // Prevent closing while loading
-      showConfirmButton: false,  // Hide confirm button during loading
+      allowOutsideClick: false,  
+      showConfirmButton: false,  
     });
 
     try {
@@ -34,7 +34,6 @@ function LoginForm() {
         },
       });
 
-      // Show success SweetAlert
       Swal.fire({
         title: 'Login Successful!',
         text: 'Welcome back!',
@@ -45,14 +44,12 @@ function LoginForm() {
         confirmButtonText: 'Okay',
       });
 
-      // Redirect to OTP verification page
       const userId = response.data.data._id; 
       navigate(`/verify-otp/${userId}`);
 
     } catch (error) {
       console.error('Error during login:', error);
 
-      // Show error SweetAlert
       Swal.fire({
         title: 'Login Failed!',
         text: 'Invalid credentials, please try again.',
@@ -63,18 +60,20 @@ function LoginForm() {
         confirmButtonText: 'Retry',
       });
     } finally {
-      setLoading(false);  // Reset loading state
+      setLoading(false);  
     }
   };
 
   return (
     <div className="login-container flex items-center justify-center min-h-screen bg-gray-900">
       <div className="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-sm z-10">
-        <h2 className="text-2xl font-bold text-center mb-6 text-white">Login</h2>
+        <h2 className="text-2xl font-bold text-center mb-6 text-white">
+          Login 
+        </h2>
         <form onSubmit={handleSubmit} autoComplete='off'>
           <div className="mb-4">
             <label htmlFor="user" className="block text-gray-300 font-semibold mb-2">
-              User
+            <FaUserAlt className="inline-block ml-2 text-blue-400" />   User  
             </label>
             <input
               type="email"
@@ -85,13 +84,13 @@ function LoginForm() {
               onChange={LoginData}
               placeholder="Enter your email"
               required
-              disabled={loading}  // Disable input during loading
+              disabled={loading}  
             />
           </div>
 
           <div className="mb-6">
             <label htmlFor="password" className="block text-gray-300 font-semibold mb-2">
-              Password
+            <FaLock className="inline-block ml-2 text-blue-400" />  Password  
             </label>
             <input
               type="password"
@@ -102,7 +101,7 @@ function LoginForm() {
               onChange={LoginData}
               placeholder="Enter your password"
               required
-              disabled={loading}  // Disable input during loading
+              disabled={loading}  
             />
           </div>
 
@@ -115,9 +114,9 @@ function LoginForm() {
           <button
             type="submit"
             className="w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            disabled={loading}  // Disable button during loading
+            disabled={loading}  
           >
-            {loading ? 'Logging in...' : 'Login'}  {/* Button text changes based on loading */}
+            {loading ? 'Logging in...' : 'Login'}  
           </button>
         </form>
 
