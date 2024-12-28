@@ -86,7 +86,7 @@ const DoctorsList = () => {
     }, [Atoken]);
 
     return (
-        <div className='min-h-screen w-[1100px] bg-gray-900 text-white p-5'>
+        <div className='min-h-screen w-[1100px] bg-gray-900 text-white p-5 w-full h-full'>
             <h1 className='text-3xl font-semibold mb-6 text-white'>All Doctors</h1>
             <div className='w-full flex flex-wrap gap-6 pt-5'>
                 {loading ? (
