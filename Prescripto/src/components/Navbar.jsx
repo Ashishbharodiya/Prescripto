@@ -18,9 +18,7 @@ const Navbar = () => {
         dispatch(UserDetailAction(token)); 
       }
     }, [cookies?.token, dispatch]);
-    
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [loading, setLoading] = useState(false); // Loading state
 
     const navigate = useNavigate();
 
@@ -28,7 +26,7 @@ const Navbar = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
-    const logout = async () => {
+    const logout = () => {
         Swal.fire({
             title: 'Are you sure?',
             text: "You will be logged out!",
@@ -36,27 +34,16 @@ const Navbar = () => {
             showCancelButton: true,
             confirmButtonText: 'Yes, logout!',
             cancelButtonText: 'No, cancel',
-            preConfirm: () => {
-                setLoading(true); // Set loading state to true when the action is being processed
-                return new Promise((resolve) => {
-                    setTimeout(() => {
-                        removeCookie('token'); 
-                        navigate('/admin/login'); 
-                        resolve(); // Continue once the logout operation is complete
-                    }, 2000); // Simulate a delay of 2 seconds before resolving
-                });
-            },
         }).then((result) => {
             if (result.isConfirmed) {
+                removeCookie('token'); 
+                navigate('/admin/login'); 
                 Swal.fire('Logged Out!', 'You have been logged out.', 'success');
-                setLoading(false); // Reset loading state after logout completes
-            } else {
-                setLoading(false); // Reset loading state if the action is cancelled
             }
         });
     };
 
-    const Dlogout = async () => {
+    const Dlogout = () => {
         Swal.fire({
             title: 'Are you sure?',
             text: "You will be logged out as Doctor!",
@@ -64,84 +51,62 @@ const Navbar = () => {
             showCancelButton: true,
             confirmButtonText: 'Yes, logout!',
             cancelButtonText: 'No, cancel',
-            preConfirm: () => {
-                setLoading(true); // Set loading state to true when the action is being processed
-                return new Promise((resolve) => {
-                    setTimeout(() => {
-                        removeCookie('token');
-                        navigate('/doctor/login');
-                        resolve(); // Continue once the logout operation is complete
-                    }, 2000); // Simulate a delay of 2 seconds before resolving
-                });
-            },
         }).then((result) => {
             if (result.isConfirmed) {
+                removeCookie('token');
+                navigate('/doctor/login');
                 Swal.fire('Logged Out!', 'You have been logged out as Doctor.', 'success');
-                setLoading(false); // Reset loading state after logout completes
-            } else {
-                setLoading(false); // Reset loading state if the action is cancelled
             }
         });
     };
     
     return (
-      <div className="flex items-center justify-between text-sm py-1 bg-gray-900 dark:bg-gray-800 border-b border-b-[#ADADAD] border-w-[6000px]">
-        <div className="flex items-center justify-between w-full">
-            {/* Logo */}
-            <img 
-                className="cursor-pointer w-[90px] sm:w-[100px] md:w-[110px] lg:w-[120px] xl:w-[130px] 2xl:w-[140px] ml-4" 
-                src={logo} 
-                alt="Logo" 
-            />
-            
-            {/* User Badge */}
-            <p className="border px-2.5 py-0.5 rounded-full border-gray-500 text-white text-xs sm:text-sm md:text-base lg:text-lg mx-2">
-                User
-            </p>
-        </div>
-
-        <div className="relative inline-block text-left md:ps-14 lg:ps-16 xl:ps-18 2xl:ps-20 mr-4">
-            <div>
-                <button
-                    onClick={toggleMenu}
-                    type="button"
-                    className="inline-flex w-full justify-center gap-x-1.5 rounded-md px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm"
-                    aria-expanded={isMenuOpen}
-                    aria-haspopup="true"
-                >
-                    {/* Profile Image */}
-                    <img
-                        src={`https://prescripto-66h4.onrender.com${state.userDetail?.GetUserDetail?.[0]?.image}`}
-                        alt="User Profile"
-                        className="w-14 h-14 rounded-full sm:w-16 sm:h-16 md:w-18 md:h-18 lg:w-20 lg:h-20 xl:w-22 xl:h-22 2xl:w-24 2xl:h-24"
-                    />
-                </button>
+        <div className="flex items-center justify-between text-sm py-1 bg-gray-900 dark:bg-gray-800 border-b border-b-[#ADADAD]">
+            <div className="flex items-center justify-between pe-2 ">
+                <img className="cursor-pointer w-[90px]" src={logo} alt="Logo" />
+                <p className='border px-2.5 py-0.5 rounded-full border-gray-500 text-white'>User</p>
             </div>
 
-            {/* Dropdown Menu */}
-            {isMenuOpen && (
-                <div
-                    className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-gray-900 dark:bg-gray-800 shadow-lg ring-1 ring-black/5 focus:outline-none"
-                    role="menu"
-                    aria-orientation="vertical"
-                    aria-labelledby="menu-button"
-                    tabIndex="-1"
-                >
-                    <div className="py-1" role="none">
-                        <a href="/doctor-profile" className="block px-4 py-2 text-sm text-gray-700 text-white" role="menuitem" tabIndex="-1">
-                            Profile
-                        </a>
-                        <a onClick={() => logout()} className="block px-4 py-2 text-sm text-gray-700 text-white" role="menuitem" tabIndex="-1">
-                            Admin Logout
-                        </a>
-                        <a onClick={() => Dlogout()} className="block px-4 py-2 text-sm text-gray-700 text-white" role="menuitem" tabIndex="-1">
-                            Doctor Logout
-                        </a>
-                    </div>
+            <div className="relative inline-block text-left ps-10">
+                <div>
+                    <button
+                        onClick={toggleMenu}
+                        type="button"
+                        className="inline-flex w-full justify-center gap-x-1.5 rounded-md px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm"
+                        aria-expanded={isMenuOpen}
+                        aria-haspopup="true"
+                    >
+                        <img
+                            src={`https://prescripto-66h4.onrender.com${state.userDetail?.GetUserDetail?.[0]?.image}`}
+                            alt="User Profile"
+                            className="w-14 h-14 rounded-full"
+                        />
+                    </button>
                 </div>
-            )}
+
+                {isMenuOpen && (
+                    <div
+                        className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-gray-900 dark:bg-gray-800 shadow-lg ring-1 ring-black/5 focus:outline-none"
+                        role="menu"
+                        aria-orientation="vertical"
+                        aria-labelledby="menu-button"
+                        tabIndex="-1"
+                    >
+                        <div className="py-1" role="none">
+                            <a href="/doctor-profile" className="block px-4 py-2 text-sm text-gray-700 text-white" role="menuitem" tabIndex="-1">
+                                Profile
+                            </a>
+                            <a onClick={() => logout()} className="block px-4 py-2 text-sm text-gray-700 text-white" role="menuitem" tabIndex="-1">
+                                Admin Logout
+                            </a>
+                            <a onClick={() => Dlogout()} className="block px-4 py-2 text-sm text-gray-700 text-white" role="menuitem" tabIndex="-1">
+                                Doctor Logout
+                            </a>
+                        </div>
+                    </div>
+                )}
+            </div>
         </div>
-      </div>
     );
 };
 
