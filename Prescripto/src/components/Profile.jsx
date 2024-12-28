@@ -44,7 +44,7 @@ function Profile() {
   }, [state.userDetail]);
 
   return (
-    <div className="bg-gray-900 w-[1200px] text-white min-h-screen p-6">
+    <div className="bg-gray-900 text-white min-h-screen p-6 w-full h-full">
       <div className="max-w-3xl mx-auto bg-gray-800 rounded-lg shadow-lg p-8">
         <h5 className="text-2xl font-bold text-center mb-6 text-indigo-500">Profile</h5>
         
