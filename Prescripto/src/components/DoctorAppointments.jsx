@@ -124,7 +124,7 @@ function DoctorAppointments() {
   }, [cookies?.Dtoken]);
 
   return (
-    <div className='w-full max-w-6xl doctor'>
+    <div className='w-full max-w-6xl doctor w-full h-full'>
       <p className='p-4 text-center text-lg font-medium text-white bg-gray-900'>
         All Appointments
       </p>
