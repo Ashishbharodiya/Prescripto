@@ -65,7 +65,7 @@ function AllAppointments() {
     }, [cookies?.Atoken]);
 
     return (
-        <div className='bg-gray-900 border rounded text-sm max-h-[80vh]'>
+        <div className='bg-gray-900 border rounded text-sm max-h-[80vh] w-full h-full'>
             <div className='hidden sm:grid grid-cols-[0.5fr_3.5fr_1fr_3fr_4fr_1fr_1fr] grid-flow-col py-3 px-6 border-b border-gray-700 bg-gray-900'>
                 <p className='text-white'>#</p>
                 <p className='text-white'>Patient</p>
