@@ -72,7 +72,7 @@ function DLoginForm() {
     }
 
     return (
-        <div className="login-container flex items-center justify-center min-h-screen bg-gray-900">
+        <div className="login-container flex items-center justify-center min-h-screen w-full h-full bg-gray-900">
             <div className="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-sm z-10">
                 <h2 className="text-2xl font-bold text-center mb-6 text-white">Dlogin</h2>
                 <form onSubmit={handleSubmit} autoComplete='off'>
