@@ -187,7 +187,7 @@ function MyAppointments() {
   }, []);
 
   return (
-    <div className="bg-gray-900 w-[1900px] text-white min-h-screen">
+    <div className="bg-gray-900 w-[1900px] text-white min-h-screen w-full h-full">
       <p className='py-5 text-center pb-3 text-lg font-medium text-gray-300 border-b border-gray-600'>My Appointments</p>
 
       <div>
