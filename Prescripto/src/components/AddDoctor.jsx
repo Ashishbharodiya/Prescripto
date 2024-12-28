@@ -108,7 +108,7 @@ function AddDoctor() {
 
     return (
         <>
-            <form action="" onSubmit={handleSubmit} className="space-y-6 p-6 bg-gray-800 w-[1200px] shadow-md rounded-lg" autoComplete='off'>
+            <form action="" onSubmit={handleSubmit} className="space-y-6 p-6 bg-gray-800 shadow-md rounded-lg" w-full h-full autoComplete='off'>
                 <p className="text-2xl text-center font-semibold text-gray-100 transition-transform transform hover:scale-1 hover:text-blue-400 ">
                     Add Doctor
                 </p>
