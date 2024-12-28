@@ -36,7 +36,7 @@ function Dprofile() {
     }, [state.userDetail]);
 
     return (
-        <div className="bg-gray-900 text-white min-h-screen p-7 overflow-auto ">
+        <div className="bg-gray-900 text-white min-h-screen p-7 overflow-auto w-full h-full ">
             <div className=" max-w-full bg-gray-800 rounded-lg shadow-lg p-8">
                 <h5 className="text-2xl font-bold text-center mb-6 text-indigo-500">Profile</h5>
                 
