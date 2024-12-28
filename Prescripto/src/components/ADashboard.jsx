@@ -89,7 +89,7 @@ function ADashboard() {
   }, [cookies?.Atoken]); 
 
   return dashData && (
-    <div className='min-h-screen w-[1200px] bg-gray-900 text-white'>
+    <div className='min-h-screen bg-gray-900 text-white w-full h-full'>
       <div className='p-4'>
         <div className='flex flex-wrap gap-3'>
           
