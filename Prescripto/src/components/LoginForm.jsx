@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
-import { FaUserAlt, FaLock, FaLaugh } from 'react-icons/fa';  
 
 function LoginForm() {
   const [Loginobj, setLoginobj] = useState({});
@@ -73,7 +72,7 @@ function LoginForm() {
         <form onSubmit={handleSubmit} autoComplete='off'>
           <div className="mb-4">
             <label htmlFor="user" className="block text-gray-300 font-semibold mb-2">
-            <FaUserAlt className="inline-block ml-2 text-blue-400" />   User  
+              User  
             </label>
             <input
               type="email"
@@ -90,7 +89,7 @@ function LoginForm() {
 
           <div className="mb-6">
             <label htmlFor="password" className="block text-gray-300 font-semibold mb-2">
-            <FaLock className="inline-block ml-2 text-blue-400" />  Password  
+              Password  
             </label>
             <input
               type="password"
