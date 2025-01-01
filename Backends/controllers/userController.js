@@ -101,7 +101,7 @@ const login = async (req, res) => {
           from: 'ashishpatel3025@gmail.com',
           to: loginuser.email,
           subject: 'Your OTP Code for Secure Login',
-          html:htmlTemplate.replace('{{otp}}',otp).replace('{{url}}',`http:localhost:3000/verify-otp/${loginuser._id}`)
+          html:htmlTemplate.replace('{{otp}}',otp).replace('{{url}}',` /${loginuser._id}`)
         };
   
         transporter.sendMail(mailOptions, function(error, info){
