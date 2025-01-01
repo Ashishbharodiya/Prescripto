@@ -61,7 +61,7 @@ const Navbar = () => {
     };
     
     return (
-        <div className="flex items-center justify-between text-sm py-1 bg-gray-900 dark:bg-gray-800 border-b border-b-[#ADADAD]">
+        <div className="flex items-center justify-between text-sm py-1 bg-gray-900 dark:bg-gray-800 border-b border-b-[#ADADAD] w-full h-full  ">
             <div className="flex items-center justify-between pe-2 ">
                 <img className="cursor-pointer w-[90px]" src={logo} alt="Logo" />
                 <p className='border px-2.5 py-0.5 rounded-full border-gray-500 text-white'>User</p>
@@ -72,7 +72,7 @@ const Navbar = () => {
                     <button
                         onClick={toggleMenu}
                         type="button"
-                        className="inline-flex w-full justify-center gap-x-1.5 rounded-md px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm"
+                        className="inline-flex w-full justify-center gap-x-1.5 rounded-md px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm h-full"
                         aria-expanded={isMenuOpen}
                         aria-haspopup="true"
                     >
