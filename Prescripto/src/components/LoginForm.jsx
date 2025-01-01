@@ -103,13 +103,7 @@ function LoginForm() {
               disabled={loading}  
             />
           </div>
-
-          <p className="text-sm text-gray-400 mt-2 pb-2">
-            <a href="/verifyEmail" className="text-blue-400 hover:underline">
-              Forgot your password?
-            </a>
-          </p>
-
+          
           <button
             type="submit"
             className="w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
