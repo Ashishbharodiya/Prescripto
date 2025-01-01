@@ -201,7 +201,7 @@ function Appointment() {
     };
 
     return (
-        <div className="container mx-auto p-6 bg-gray-900 w-[1005px] h-full">
+        <div className="container mx-auto p-6 bg-gray-900 w-[1017px] h-full">
             {docInfo ? (
               <div>
                 <div className="flex flex-col sm:flex-row gap-4 bg-gray-800 p-6 rounded-lg shadow-lg">
