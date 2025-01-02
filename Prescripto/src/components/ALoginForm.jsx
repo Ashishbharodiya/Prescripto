@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 function ALoginForm() {
     const [Loginobj, setLoginobj] = useState({});
     const [cookies, setCookie, removeCookie] = useCookies(['Atoken', 'admin']);
-    const [loading, setLoading] = useState(false);  // Added loading state
+    const [loading, setLoading] = useState(false);  
     const navigate = useNavigate();
 
     const LoginData = (e) => {
@@ -29,7 +29,7 @@ function ALoginForm() {
                 const { Atoken, data } = response.data;
 
                 const expiryDate = new Date();
-                expiryDate.setHours(expiryDate.getHours() + 1);
+                expiryDate.setHours(expiryDate.getHours() + 24);
 
                 setCookie('Atoken', Atoken, { path: '/', expires: expiryDate });
                 setCookie('admin', JSON.stringify(data), { path: '/', expires: expiryDate });
