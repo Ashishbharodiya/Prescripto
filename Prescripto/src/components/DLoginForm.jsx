@@ -18,7 +18,7 @@ function DLoginForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         
-        setLoading(true); // Set loading to true when the request starts
+        setLoading(true); 
 
         try {
             const response = await axios.post('https://prescripto-66h4.onrender.com/api/doctor/login', Loginobj, {
@@ -31,7 +31,7 @@ function DLoginForm() {
                 const { Dtoken, data } = response.data;
 
                 const expiryDate = new Date();
-                expiryDate.setHours(expiryDate.getHours() + 1);
+                expiryDate.setHours(expiryDate.getHours() + 24);
 
                 setCookie('Dtoken', Dtoken, { path: '/', expires: expiryDate });
                 setCookie('doctor', JSON.stringify(data), { path: '/', expires: expiryDate });
