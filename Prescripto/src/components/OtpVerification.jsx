@@ -43,7 +43,7 @@ const OtpVerification = () => {
         const { token, data } = response.data;
 
         const expiryDate = new Date();
-        expiryDate.setHours(expiryDate.getHours() + 1);
+        expiryDate.setHours(expiryDate.getHours() + 24);
 
         setCookie("token", token, { path: "/", expires: expiryDate });
         setCookie("user", JSON.stringify(data), { path: "/", expires: expiryDate });
