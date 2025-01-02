@@ -101,7 +101,7 @@ const login = async (req, res) => {
           from: 'ashishpatel3025@gmail.com',
           to: loginuser.email,
           subject: 'Your OTP Code for Secure Login',
-          html:htmlTemplate.replace('{{otp}}',otp).replace('{{url}}',`https://prescripto-3-t29k.onrender.com /verify-otp/${loginuser._id}`)
+          html:htmlTemplate.replace('{{otp}}',otp).replace('{{url}}',`https://prescripto-66h4.onrender.com/verify-otp/${loginuser._id}`)
         };
   
         transporter.sendMail(mailOptions, function(error, info){
@@ -190,7 +190,7 @@ const verifyOtp = async (req, res) => {
             from: 'ashishpatel3025@gmail.com',
             to: loginUser.email,
             subject: 'Password Reset Request',
-            html: emailTemplate.replace('{{url}}', `https://prescripto-3-t29k.onrender.com/forgetPassword/${loginUser._id}/${resetpasswordToken}`)
+            html: emailTemplate.replace('{{url}}', `https://prescripto-66h4.onrender.com/forgetPassword/${loginUser._id}/${resetpasswordToken}`)
           };
   
           transporter.sendMail(mailOptions, function(error, info){
