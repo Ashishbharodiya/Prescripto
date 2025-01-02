@@ -166,7 +166,7 @@ const loginDoctor = async (req, res) => {
 
         const Dtoken = jwt.sign({
             _id: logindoctor?.id,
-        }, "oscar", { expiresIn: 60 * 60 });
+        }, "oscar", { expiresIn: 24 * 60 * 60 });
 
         console.log(Dtoken);
 
